@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kumar Shanu - Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* Apply Inter font to the entire body */
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      }
+      /* Custom scrollbar for a cleaner look */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #e0e0e0; /* Light mode track */
+        border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #333; /* Dark mode track */
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888; /* Light mode thumb */
+        border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #555; /* Dark mode thumb */
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Light mode thumb hover */
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #777; /* Dark mode thumb hover */
+      }
+
+      /* Active navigation link styling */
+      .active-nav {
+        @apply text-blue-600 dark:text-blue-400 font-bold border-b-2 border-blue-600 dark:border-blue-400;
+      }
+    </style>
+    <script>
+      // Automatically apply dark theme. No toggle function needed as per request.
+      document.documentElement.classList.add('dark');
+
+      // JavaScript for active navigation link highlighting
+      document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        function activateNavLink() {
+          let current = '';
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // Check if scroll position is within the section, adjusting for header height
+            if (pageYOffset >= sectionTop - 100 && pageYOffset < sectionTop + sectionHeight - 100) {
+              current = section.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach(link => {
+            link.classList.remove('active-nav');
+            if (link.getAttribute('href').includes(current)) {
+              link.classList.add('active-nav');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', activateNavLink);
+        // Call on load to set initial active link
+        activateNavLink();
+      });
+    </script>
+  </head>
+  <body class="bg-gray-950 text-gray-100 font-inter transition-colors duration-300">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 flex justify-between items-center px-6 py-4 lg:px-12 shadow-lg bg-gray-900/90 backdrop-blur-md rounded-b-xl">
+      <h1 class="text-3xl font-extrabold text-blue-400">Kumar Shanu</h1>
+      <div class="flex items-center gap-6">
+        <nav class="space-x-6 hidden md:block">
+          <a href="#about" class="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200 rounded-md p-2">About</a>
+          <a href="#skills" class="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200 rounded-md p-2">Skills</a>
+          <a href="#projects" class="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200 rounded-md p-2">Projects</a>
+          <a href="#experience" class="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200 rounded-md p-2">Experience</a>
+          <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200 rounded-md p-2">Contact</a>
+        </nav>
+        <!-- Theme toggle button removed as per request -->
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative text-center py-20 md:py-28 bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden rounded-b-xl shadow-inner">
+      <!-- Background elements for visual interest -->
+      <div class="absolute inset-0 z-0 opacity-10">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none">
+          <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="0.5" class="text-gray-700"></circle>
+          <circle cx="80" cy="70" r="20" stroke="currentColor" stroke-width="0.5" class="text-gray-600"></circle>
+          <rect x="50" y="10" width="10" height="10" stroke="currentColor" stroke-width="0.5" class="text-gray-700"></rect>
+        </svg>
+      </div>
+      <div class="relative z-10">
+        <h2 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg animate-fade-in-up">
+          Frontend Developer <br class="md:hidden"/> & Data Viz Engineer
+        </h2>
+        <p class="max-w-xl mx-auto text-xl md:text-2xl mb-8 opacity-90 animate-fade-in">
+          Building intuitive UIs and data-driven apps with modern web technologies.
+        </p>
+        <div class="mt-8 flex justify-center space-x-4 animate-scale-in">
+          <a href="mailto:kumarshanu.dev@gmail.com" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 transform">
+            Hire Me
+          </a>
+         <a href="./shanu.pdf" download
+           class="border-2 border-blue-600 text-blue-400 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-blue-900 hover:text-white hover:scale-105 transition-all duration-300 transform">
+           Download CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="px-6 py-16 md:py-24 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-gray-950 rounded-xl my-12 shadow-lg">
+      <div class="md:w-1/3 flex-shrink-0">
+       <img
+          src="./shanu.png"
+          alt="Kumar Shanu"
+          class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-[0_0_60px_#0f172a] ring-1 ring-gray-900/50"
+        />
+
+      </div>
+      <div class="md:w-2/3 text-center md:text-left">
+        <h3 class="text-4xl font-bold mb-6 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">About Me</h3>
+        <p class="text-lg leading-relaxed text-gray-300">
+          Hi, I’m <strong class="font-semibold text-blue-400">Kumar Shanu</strong>, a passionate
+          <strong class="font-semibold text-blue-400">Frontend Developer</strong> and
+          <strong class="font-semibold text-blue-400">Data Visualization Engineer</strong> with 4+ years of hands-on experience.
+          I specialize in building modern, scalable, and high-performance web applications using cutting-edge
+          technologies like <span class="font-medium">React</span>, <span class="font-medium">Angular</span>, and <span class="font-medium">D3.js</span>.
+          My focus is on crafting intuitive user interfaces and extracting meaningful insights from complex data.
+          I live by the principle: <em class="text-orange-400">"Karm karo, phal ki chinta mat kro"</em> (Do your duty, without concern for the results).
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-gray-900 px-6 py-16 md:py-24 rounded-xl shadow-lg mx-auto max-w-6xl my-12">
+      <div class="max-w-5xl mx-auto text-center">
+        <h3 class="text-4xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Skills</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Skill Card Example -->
+
+           <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Javascript</span>
+          </div>
+
+           <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">TypeScript</span>
+          </div>
+
+           <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Node.js</span>
+          </div>
+
+           <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+           <img src="https://vectorlogo.zone/logos/expressjs/expressjs-icon.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Express</span>
+          </div>
+         
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">React</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+            <img src="https://angular.io/assets/images/logos/angular/angular.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Angular</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">D3.js</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+             <img src="https://redux-toolkit.js.org/img/redux.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Redux Toolkit</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+           <img src="https://cdn.worldvectorlogo.com/logos/rxjs-1.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">RxJS</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+           <img src="https://cdn.simpleicons.org/tailwindcss/38BDF8" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Tailwind CSS</span>
+          </div>
+      
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">MongoDB</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+            <img src="https://logo.svgcdn.com/l/firebase.png" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">Firebase</span>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center border border-gray-700">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-12 h-12" />
+            <span class="text-xl font-semibold text-gray-200">HTML/CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="px-6 py-16 md:py-24 max-w-6xl mx-auto rounded-xl my-12">
+      <h3 class="text-4xl font-bold mb-10 text-center text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Projects</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+         <!-- Project Card 1 -->
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <h4 class="text-2xl font-bold mb-3 text-blue-400">Customer Journey Graph</h4>
+          <p class="text-gray-300 mb-4">
+            A sophisticated network graph visualization to effectively trace and analyze complex customer actions and pathways.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://customer-journey-hlrm.onrender.com/app/graph/v1/getJourney" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md">
+              View Project
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></path></svg>
+            </a>
+            <a href="https://github.com/shanu3742/customer-journey" class="inline-flex items-center px-5 py-2 border border-gray-600 text-gray-300 rounded-md hover:bg-gray-700 transition-colors duration-200 shadow-md">
+              View Code
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 20L2 16l4-4"></path></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Project Card 2 -->
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <h4 class="text-2xl font-bold mb-3 text-blue-400">Marble Race</h4>
+          <p class="text-gray-300 mb-4">
+            Marble Race Game is a 3D racing simulation built with React, Ionic, and Three.js.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://tubular-haupia-9a4eca.netlify.app/app/roll-the-ball" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md">
+              View Project
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+            <a href="https://github.com/shanu3742/MARBLE-RACE" class="inline-flex items-center px-5 py-2 border border-gray-600 text-gray-300 rounded-md hover:bg-gray-700 transition-colors duration-200 shadow-md">
+              View Code
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 20L2 16l4-4"></path></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Project Card 3 -->
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <h4 class="text-2xl font-bold mb-3 text-blue-400">Chat App</h4>
+          <p class="text-gray-300 mb-4">
+            A real-time messaging application leveraging Socket.io for instant communication and Firebase for backend services.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://github.com/shanu3742/chat-app" class="inline-flex items-center px-5 py-2 border border-gray-600 text-gray-300 rounded-md hover:bg-gray-700 transition-colors duration-200 shadow-md">
+              View Code
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 20L2 16l4-4"></path></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Project Card 4 -->
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <h4 class="text-2xl font-bold mb-3 text-blue-400">Curry Company Web App</h4>
+          <p class="text-gray-300 mb-4">
+            A web application for managing cooks and ingredients, developed with D3.js for powerful data visualization and Angular for the frontend.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://curry-company.eccenca.com/home" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md">
+              View Project
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-gray-900 px-6 py-16 md:py-24 rounded-xl shadow-lg mx-auto max-w-6xl my-12">
+      <div class="max-w-5xl mx-auto text-center">
+        <h3 class="text-4xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Experience</h3>
+        <div class="space-y-8 text-left relative before:absolute before:left-1/2 before:-translate-x-1/2 before:w-1 before:h-full before:bg-gray-700 before:rounded-full md:before:left-0 md:before:translate-x-0">
+
+          <!-- Experience Item 1: StockEdge -->
+          <div class="relative pl-8 md:pl-16 group min-h-[300px]"> <!-- Added min-height for iframe -->
+            <div class="absolute w-4 h-4 bg-blue-600 rounded-full -left-2 top-0 transform -translate-x-1/2 group-hover:scale-150 transition-transform duration-300 md:-left-2 md:translate-x-0"></div>
+            <div class="relative bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700 h-full">
+              <!-- Iframe as background - Note: Most websites prevent embedding for security reasons (X-Frame-Options, CSP).
+                   This might appear blank or show an error. Consider using a static image screenshot instead if this doesn't work. -->
+              <iframe src="https://web.stockedge.com/app/markets" class="absolute inset-0 w-full h-full border-none z-0 opacity-10 pointer-events-none rounded-lg"></iframe>
+              <!-- Overlay for readability -->
+              <div class="absolute inset-0 bg-gray-950/70 z-10 rounded-lg"></div>
+
+              <div class="relative z-20"> <!-- Ensure content is above overlay -->
+                <h4 class="text-2xl font-bold text-blue-400 mb-2">StockEdge</h4>
+                <p class="text-gray-400 text-sm mb-3">Nov 2022 - Present</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                  <li>Improved performance of legacy Angular codebase, resulting in a <strong>20% reduction in load time</strong> for key modules.</li>
+                  <li>Developed and integrated advanced financial charting components using D3.js, providing users with deeper analytical insights.</li>
+                  <li>Collaborated with backend teams to optimize API interactions and data fetching for enhanced responsiveness.</li>
+                </ul>
+                <a href="https://web.stockedge.com/app/markets" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md">
+                  Visit Website
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 2: Aarth Software (Curry Company) -->
+          <div class="relative pl-8 md:pl-16 group min-h-[300px]"> <!-- Added min-height for iframe -->
+            <div class="absolute w-4 h-4 bg-blue-600 rounded-full -left-2 top-0 transform -translate-x-1/2 group-hover:scale-150 transition-transform duration-300 md:-left-2 md:translate-x-0"></div>
+            <div class="relative bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700 h-full">
+              <!-- Iframe as background - Note: Most websites prevent embedding for security reasons (X-Frame-Options, CSP).
+                   This might appear blank or show an error. Consider using a static image screenshot instead if this doesn't work. -->
+              <iframe src="https://curry-company.eccenca.com/home" class="absolute inset-0 w-full h-full border-none z-0 opacity-10 pointer-events-none rounded-lg"></iframe>
+              <!-- Overlay for readability -->
+              <div class="absolute inset-0 bg-gray-950/70 z-10 rounded-lg"></div>
+
+              <div class="relative z-20"> <!-- Ensure content is above overlay -->
+                <h4 class="text-2xl font-bold text-blue-400 mb-2">Aarth Software</h4>
+                <p class="text-gray-400 text-sm mb-3">Jun 2021 - Nov 2022</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                  <li>Led the frontend development team for the "Curry Company" web application, overseeing UI/UX implementation.</li>
+                  <li>Designed and built a dynamic SPARQL query builder and various visual data tools using D3.js for complex data exploration.</li>
+                  <li>Implemented responsive designs and ensured cross-browser compatibility for all web applications.</li>
+                </ul>
+                <a href="https://curry-company.eccenca.com/home" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md">
+                  Visit Website
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="px-6 py-16 md:py-24 max-w-6xl mx-auto rounded-xl my-12 text-center">
+      <h3 class="text-4xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Get In Touch</h3>
+      <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+        Have a project in mind or just want to chat? Feel free to reach out to me through any of the channels below. I'm always open to new opportunities and collaborations!
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Email -->
+        <a href="mailto:kumarshanu.dev@gmail.com" class="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <svg class="w-12 h-12 text-blue-400 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H8a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          <span class="font-semibold text-lg text-gray-200">Email Me</span>
+          <span class="text-sm text-gray-400">kumarshanu.dev@gmail.com</span>
+        </a>
+        <!-- Phone -->
+        <a href="tel:+918660308645" class="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <svg class="w-12 h-12 text-green-400 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.293a1 1 0 01.707.293l3.586 3.586a1 1 0 010 1.414L9.586 12A8 8 0 0012 14.414l2.707-2.707a1 1 0 011.414 0l3.586 3.586a1 1 0 01.293.707V19a2 2 0 01-2 2h-1C7.82 21 3 16.18 3 10.292V5z"/></svg>
+          <span class="font-semibold text-lg text-gray-200">Call Me</span>
+          <span class="text-sm text-gray-400">+91-8660308645</span>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/shanu3742" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <svg class="w-12 h-12 text-gray-100 mb-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.603-3.37-1.34-3.37-1.34-.454-1.156-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.007.07 1.532 1.03 1.532 1.03.89 1.529 2.343 1.088 2.91.831.091-.645.35-1.088.636-1.339-2.22-.253-4.555-1.115-4.555-4.945 0-1.09.39-1.98.966-2.678-.09-.253-.418-1.27.096-2.651 0 0 .79-.268 2.585 1.026A8.55 8.55 0 0112 5.673c.895 0 1.782.121 2.628.361 1.795-1.294 2.583-1.026 2.583-1.026.516 1.382.19 2.398.099 2.651.577.698.965 1.587.965 2.678 0 3.83-2.339 4.685-4.566 4.935.359.308.678.915.678 1.846 0 1.335-.012 2.413-.012 2.747 0 .267.18.579.688.481C19.14 20.163 22 16.416 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+          <span class="font-semibold text-lg text-gray-200">GitHub</span>
+          <span class="text-sm text-gray-400">shanu3742</span>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/kumar-shanu-95855b170/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700">
+          <svg class="w-12 h-12 text-blue-500 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 9h4v12H4zM6 5.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path></svg>
+          <span class="font-semibold text-lg text-gray-200">LinkedIn</span>
+          <span class="text-sm text-gray-400">Kumar Shanu</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-6 bg-gray-800 text-gray-300 rounded-t-xl shadow-inner">
+      <p>&copy; 2025 Kumar Shanu. Built with ❤️ and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>
+    </footer>
+  </body>
+</html>
