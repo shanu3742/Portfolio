@@ -1,6 +1,6 @@
 import { IonContent, IonPage, } from '@ionic/react';
 import { Canvas } from '@react-three/fiber';
-import { Grid, OrbitControls } from '@react-three/drei';
+import { Grid, OrbitControls, Stats } from '@react-three/drei';
 import './Home.css';
 import Experience from '../Experience';
 
@@ -14,6 +14,7 @@ const Home: React.FC = () => {
           <directionalLight position={[5, 5, 5]} intensity={1} />
           <OrbitControls />
           <Experience />
+          <Stats />
           <Grid sectionSize={3}
             sectionColor={'purple'}
             sectionThickness={1}

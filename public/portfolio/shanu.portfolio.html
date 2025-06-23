@@ -48,9 +48,11 @@
       }
     </style>
     <script>
+       let sectionName;
+     
       // Automatically apply dark theme. No toggle function needed as per request.
       document.documentElement.classList.add('dark');
-
+      localStorage.setItem('app-view','shanu')
       // JavaScript for active navigation link highlighting
       document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section[id]');
@@ -66,7 +68,11 @@
               current = section.getAttribute('id');
             }
           });
-
+          if(current && sectionName !==current){
+            sectionName=current
+            window.parent.postMessage({ type: "portfolio-message", payload: {section:current} },"*");
+          }
+           
           navLinks.forEach(link => {
             link.classList.remove('active-nav');
             if (link.getAttribute('href').includes(current)) {
@@ -299,7 +305,7 @@
             <div class="relative bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-700 h-full">
               <!-- Iframe as background - Note: Most websites prevent embedding for security reasons (X-Frame-Options, CSP).
                    This might appear blank or show an error. Consider using a static image screenshot instead if this doesn't work. -->
-              <iframe src="https://web.stockedge.com/app/markets" class="absolute inset-0 w-full h-full border-none z-0 opacity-10 pointer-events-none rounded-lg"></iframe>
+              <!-- <iframe src="https://web.stockedge.com/app/markets" class="absolute inset-0 w-full h-full border-none z-0 opacity-10 pointer-events-none rounded-lg"></iframe> -->
               <!-- Overlay for readability -->
               <div class="absolute inset-0 bg-gray-950/70 z-10 rounded-lg"></div>
 
@@ -381,8 +387,12 @@
           <span class="text-sm text-gray-400">Kumar Shanu</span>
         </a>
       </div>
+      <div class="fixed bottom-0 right-1 flex">
+        <div class="text-4xl" >🛜</div>
+        <div class="text-4xl" >📶</div>
+      </div>
     </section>
-
+  
     <!-- Footer Section -->
     <footer class="text-center py-6 bg-gray-800 text-gray-300 rounded-t-xl shadow-inner">
       <p>&copy; 2025 Kumar Shanu. Built with ❤️ and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Tailwind CSS</a>.</p>

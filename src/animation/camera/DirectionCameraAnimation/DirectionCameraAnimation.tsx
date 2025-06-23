@@ -1,43 +1,38 @@
-import { useSpring } from '@react-spring/three';
-import { useThree } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
+import { useThree } from '@react-three/fiber'
+import { useEffect } from 'react'
+import * as THREE from 'three'
 
-type SpringCameraProps = {
-    targetPosition: [number, number, number];
-};
+type CameraMoverProps = {
+    targetPosition: [number, number, number]
+    duration?: number // in seconds
+}
 
-export function CameraMover({ targetPosition }: SpringCameraProps) {
-    const finishedRef = useRef(false);
-    const { camera } = useThree();
-
-    const spring = useSpring(() => ({
-        x: camera.position.x,
-        y: camera.position.y,
-        z: camera.position.z,
-        config: { mass: 1, tension: 170, friction: 26 },
-    }));
-    const api = spring[1]
+export function CameraMover({ targetPosition, duration = 1.5 }: CameraMoverProps) {
+    const { camera } = useThree()
 
     useEffect(() => {
-        const raf = requestAnimationFrame(() => {
-            api.start({
-                x: targetPosition[0],
-                y: targetPosition[1],
-                z: targetPosition[2],
-                onChange: ({ value }) => {
-                    if (!finishedRef.current) {
-                        camera.position.set(value.x, value.y, value.z);
-                        camera.updateProjectionMatrix();
-                    }
-                },
-                onRest: () => {
-                    finishedRef.current = true;
-                },
-            });
-        });
+        const start = new THREE.Vector3().copy(camera.position)
+        const end = new THREE.Vector3(...targetPosition)
+        const clock = new THREE.Clock()
+        let animationFrameId: number
 
-        return () => cancelAnimationFrame(raf);
-    }, []); // Only run on mount
+        const animate = () => {
+            const elapsed = clock.getElapsedTime()
+            const t = Math.min(elapsed / duration, 1) // normalize time
+            camera.position.lerpVectors(start, end, t)
 
-    return null;
+            // Optional: lookAt fixed point (e.g., origin)
+            // camera.lookAt(0, 0, 0)
+
+            if (t < 1) {
+                animationFrameId = requestAnimationFrame(animate)
+            }
+        }
+
+        animationFrameId = requestAnimationFrame(animate)
+
+        return () => cancelAnimationFrame(animationFrameId)
+    }, [])
+
+    return null
 }
