@@ -1,6 +1,8 @@
 import { Chair } from "../Chair/Index";
 import { CameraMover } from "../../animation/camera/DirectionCameraAnimation/DirectionCameraAnimation";
 import { Center, Html, useGLTF } from "@react-three/drei";
+import { StreetLight } from "../StreetLight/StreetLight";
+
 
 
 const WorkingDesk = () => {
@@ -16,17 +18,31 @@ const WorkingDesk = () => {
     const { scene: table } = useGLTF('./model/table.gltf')
     const { scene: cup } = useGLTF('./model/cup.gltf')
 
+
     return (
         <>
             <CameraMover targetPosition={cameraTarget} />
             <group position-y={0.525}>
+                <group position={[0.38, 0.4, 0.112]} >
+                    <pointLight
+                        scale={0.65}
+                        intensity={10}
+                        distance={0.8}
+                        color="rgb(215, 205, 145)"
+                        castShadow
+
+                    />
+                </group>
+                <group position-y={0.5} position-x={0.85} position-z={0.2} scale={0.35} rotation={[0, -Math.PI / 2, 0]}>
+                    <StreetLight />
+                </group>
                 <group rotation-y={Math.PI / 2}>
                     <Center>
                         <primitive object={table} />
                     </Center>
                 </group>
                 <group scale={0.35} position-y={0.4}>
-                    <rectAreaLight width={2.5} height={1.65} intensity={65} color={'gray'} rotation={[-0.1, Math.PI, 0]} position={[0, 0.55, -1.15]} />
+                    {/* <rectAreaLight width={2.5} height={1.65} intensity={65} color={'gray'} rotation={[-0.1, Math.PI, 0]} position={[0, 0.55, -1.15]} /> */}
                     <primitive object={scene} >
                         <Html occlude transform wrapperClass="html-screen" distanceFactor={1.17} position={[0, 1.56, -1.4]} rotation-x={-0.256}>
                             <iframe src="./portfolio/shanu.portfolio.html" />

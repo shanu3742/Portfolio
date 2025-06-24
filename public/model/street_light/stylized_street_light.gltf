@@ -1,0 +1,452 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 282,
+            "type": "VEC3",
+            "max": [
+                20.07944107055664,
+                258.0976257324219,
+                83.2572021484375
+            ],
+            "min": [
+                -21.35970687866211,
+                248.17042541503906,
+                41.81805419921875
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 282,
+            "type": "VEC3",
+            "max": [
+                0.8272942900657654,
+                1.0,
+                0.8273007273674011
+            ],
+            "min": [
+                -0.8273115754127502,
+                -1.0,
+                -0.8273153901100159
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 282,
+            "type": "VEC2",
+            "max": [
+                0.5100255012512207,
+                0.998046875
+            ],
+            "min": [
+                0.001953125,
+                0.001953125
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1560,
+            "type": "SCALAR",
+            "max": [
+                281
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3340,
+            "type": "VEC3",
+            "max": [
+                20.72562026977539,
+                299.1690979003906,
+                83.90342712402344
+            ],
+            "min": [
+                -22.00594711303711,
+                0.000025272369384765625,
+                -21.707969665527344
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3340,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3340,
+            "type": "VEC2",
+            "max": [
+                0.998046875,
+                0.9309654235839844
+            ],
+            "min": [
+                0.001953125,
+                0.001953125
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 15414,
+            "type": "SCALAR",
+            "max": [
+                3339
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 183800,
+            "uri": "stylized_street_light_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 3384,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 3384,
+            "byteLength": 3384,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 6768,
+            "byteLength": 2256,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 9024,
+            "byteLength": 6240,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 15264,
+            "byteLength": 40080,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 55344,
+            "byteLength": 40080,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 95424,
+            "byteLength": 26720,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 122144,
+            "byteLength": 61656,
+            "target": 34963
+        }
+    ],
+    "images": [
+        {
+            "uri": "textures/image_1.png"
+        },
+        {
+            "uri": "textures/image_0.png"
+        },
+        {
+            "uri": "textures/image_3.png"
+        },
+        {
+            "uri": "textures/image_2.png"
+        },
+        {
+            "uri": "textures/image_5.png"
+        },
+        {
+            "uri": "textures/image_4.png"
+        },
+        {
+            "uri": "textures/image_6.png"
+        }
+    ],
+    "materials": [
+        {
+            "name": "M_Street_Light_Emission",
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0
+                },
+                "metallicRoughnessTexture": {
+                    "index": 1
+                },
+                "roughnessFactor": 0.6994307041168213
+            },
+            "normalTexture": {
+                "index": 2
+            },
+            "emissiveTexture": {
+                "index": 3
+            },
+            "emissiveFactor": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "doubleSided": true
+        },
+        {
+            "name": "M_Street_Light_Pole",
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 4
+                },
+                "metallicRoughnessTexture": {
+                    "index": 5
+                },
+                "metallicFactor": 0.800000011920929
+            },
+            "normalTexture": {
+                "index": 6
+            },
+            "doubleSided": true
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 7,
+                    "attributes": {
+                        "POSITION": 4,
+                        "NORMAL": 5,
+                        "TEXCOORD_0": 6
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "stylized_street_light",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Sketchfab_model",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.220446049250313e-16,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.220446049250313e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "children": [
+                2
+            ],
+            "extras": {
+                "name": "Sketchfab_model"
+            }
+        },
+        {
+            "name": "SM_Street_Lightfbx",
+            "matrix": [
+                0.009999999776482582,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.2204459996194763e-18,
+                0.009999999776482582,
+                0.0,
+                0.0,
+                -0.009999999776482582,
+                2.2204459996194763e-18,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "children": [
+                3
+            ],
+            "extras": {
+                "name": "SM Street Light.fbx"
+            }
+        },
+        {
+            "name": "RootNode",
+            "children": [
+                4
+            ],
+            "extras": {
+                "name": "RootNode"
+            }
+        },
+        {
+            "name": "SM_Street_Light",
+            "children": [
+                5,
+                6
+            ],
+            "extras": {
+                "name": "SM_Street_Light"
+            }
+        },
+        {
+            "name": "SM_Street_Light_M_Street_Light_Emission_0",
+            "mesh": 0,
+            "extras": {
+                "name": "SM_Street_Light_M_Street_Light_Emission_0"
+            }
+        },
+        {
+            "name": "SM_Street_Light_M_Street_Light_Pole_0",
+            "mesh": 1,
+            "extras": {
+                "name": "SM_Street_Light_M_Street_Light_Pole_0"
+            }
+        }
+    ],
+    "samplers": [
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        },
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "textures": [
+        {
+            "source": 0,
+            "sampler": 0
+        },
+        {
+            "source": 1,
+            "sampler": 1
+        },
+        {
+            "source": 2,
+            "sampler": 2
+        },
+        {
+            "source": 3,
+            "sampler": 3
+        },
+        {
+            "source": 4,
+            "sampler": 4
+        },
+        {
+            "source": 5,
+            "sampler": 5
+        },
+        {
+            "source": 6,
+            "sampler": 6
+        }
+    ],
+    "scene": 0
+}
