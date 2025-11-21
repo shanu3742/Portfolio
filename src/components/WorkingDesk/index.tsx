@@ -2,11 +2,11 @@ import { Chair } from "../Chair/Index";
 import { CameraMover } from "../../animation/camera/DirectionCameraAnimation/DirectionCameraAnimation";
 import { Center, Html, useGLTF } from "@react-three/drei";
 import { StreetLight } from "../StreetLight/StreetLight";
-
+import {  RigidBody } from "@react-three/rapier";
 
 
 const WorkingDesk = () => {
-    const cameraTarget: [number, number, number] = [0, 1.5, 3];
+    const cameraTarget: [number, number, number] = [0, 4, 10];
 
     const chairPosition = {
         x: -0.1,
@@ -21,7 +21,8 @@ const WorkingDesk = () => {
 
     return (
         <>
-            <CameraMover targetPosition={cameraTarget} />
+        <CameraMover targetPosition={cameraTarget} />
+        <RigidBody type='fixed'  colliders="cuboid" position={[0, 2, 0]} restitution={0} friction={1} >
             <group position-y={0.525}>
                 <group position={[0.38, 0.4, 0.112]} >
                     <pointLight
@@ -59,7 +60,7 @@ const WorkingDesk = () => {
                     <Chair />
                 </group>
             </group>
-
+        </RigidBody>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { Center, Html } from '@react-three/drei';
 
 import React, { useEffect, useRef, useState } from 'react';
-
+import {  RigidBody } from "@react-three/rapier"
 
 const BilBoard = () => {
 
@@ -35,9 +35,12 @@ const BilBoard = () => {
     return (
         <>
             {
-                isBilBoardInit && <group position={[-5, 0, -3.5]}>
+                isBilBoardInit && 
+                <group position={[-5, 0, -3.5]}>
+                    <RigidBody type='fixed'  colliders="cuboid" position={[0, 2, 0]} restitution={0} friction={1} > 
                     <Center>
                         {/* Group both Html and board */}
+                     
                         <group position={[0, 2, 0]} rotation={[0, Math.PI / 4, 0]}>
                             {/* HTML iframe */}
                             <Html
@@ -73,6 +76,7 @@ const BilBoard = () => {
                             </group>
                         </group>
                     </Center>
+                </RigidBody>
                 </group>
             }
         </>
