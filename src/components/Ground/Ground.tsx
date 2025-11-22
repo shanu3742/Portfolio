@@ -1,7 +1,7 @@
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo } from 'react'
-import {RigidBody } from '@react-three/rapier';
+import { RigidBody } from '@react-three/rapier';
 const Ground = () => {
 
     const textures = useTexture({
@@ -36,36 +36,36 @@ const Ground = () => {
     }, [textures])
 
     return (
-        <RigidBody type='fixed' restitution={0.2} friction={1} key={length}>  
-        <mesh
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={[10, 10, 10]}
-            castShadow
-            receiveShadow
-        >
-            {/* 512 segments gives smooth hills */}
-            <planeGeometry args={[10, 10, 512, 512]} />
+        <RigidBody type='fixed' restitution={0.2} friction={1} key={length}>
+            <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={[10, 10, 10]}
+                castShadow
+                receiveShadow
+            >
+                {/* 512 segments gives smooth hills */}
+                <planeGeometry args={[10, 10, 512, 512]} />
 
-            <shaderMaterial
-                vertexShader={vertexShader}
-                fragmentShader={fragmentShader}
-                uniforms={{
-                    uDirt: { value: textures.dirt },
-                    uGrass: { value: textures.grass },
-                    uGrassNormal: { value: textures.grassNormal },
-                    uGrassRough: { value: textures.grassRough },
-                    uPath: { value: textures.path },
-                    uPathNormal: { value: textures.pathNormal },
-                    uMask: { value: textures.mask },
-                    uHeightMap: { value: textures.height },
+                <shaderMaterial
+                    vertexShader={vertexShader}
+                    fragmentShader={fragmentShader}
+                    uniforms={{
+                        uDirt: { value: textures.dirt },
+                        uGrass: { value: textures.grass },
+                        uGrassNormal: { value: textures.grassNormal },
+                        uGrassRough: { value: textures.grassRough },
+                        uPath: { value: textures.path },
+                        uPathNormal: { value: textures.pathNormal },
+                        uMask: { value: textures.mask },
+                        uHeightMap: { value: textures.height },
 
-                    // Fog
-                    fogColor: { value: new THREE.Color("#cfe3ff") },
-                    fogDensity: { value: 0.08 },
-                }}
-            />
-        </mesh>
-    </RigidBody>
+                        // Fog
+                        fogColor: { value: new THREE.Color("#cfe3ff") },
+                        fogDensity: { value: 0.08 },
+                    }}
+                />
+            </mesh>
+        </RigidBody>
     )
 }
 

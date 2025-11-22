@@ -1,0 +1,269 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 300,
+            "type": "VEC3",
+            "max": [
+                0.007875903509557247,
+                0.006783975288271904,
+                0.0048991842195391655
+            ],
+            "min": [
+                -0.006974818650633097,
+                -0.007306498009711504,
+                -0.00003848680353257805
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 300,
+            "type": "VEC3",
+            "max": [
+                0.999994158744812,
+                0.996390700340271,
+                0.036165788769721985
+            ],
+            "min": [
+                -0.9999897480010986,
+                -0.9964557886123657,
+                -0.6647080183029175
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1440,
+            "type": "SCALAR",
+            "max": [
+                299
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2818,
+            "type": "VEC3",
+            "max": [
+                0.00912585761398077,
+                0.008328148163855076,
+                0.007843795232474804
+            ],
+            "min": [
+                -0.008671412244439125,
+                -0.008929237723350525,
+                0.0006176117458380759
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2818,
+            "type": "VEC3",
+            "max": [
+                0.9974351525306702,
+                0.9988065361976624,
+                0.9999424815177917
+            ],
+            "min": [
+                -0.9933422803878784,
+                -0.9997992515563965,
+                -0.47241026163101196
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 9558,
+            "type": "SCALAR",
+            "max": [
+                2817
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 118824,
+            "uri": "Pine Trees_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 3600,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 3600,
+            "byteLength": 3600,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 7200,
+            "byteLength": 5760,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 12960,
+            "byteLength": 33816,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 46776,
+            "byteLength": 33816,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 80592,
+            "byteLength": 38232,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Wood",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.24618732929229736,
+                    0.14435896277427673,
+                    0.053798429667949677,
+                    1.0
+                ],
+                "metallicFactor": 0.4000000059604645,
+                "roughnessFactor": 0.27216553688049316
+            }
+        },
+        {
+            "name": "Green",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.09404914081096649,
+                    0.1788560301065445,
+                    0.012008205987513065,
+                    1.0
+                ],
+                "metallicFactor": 0.4000000059604645,
+                "roughnessFactor": 0.27216553688049316
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 5,
+                    "attributes": {
+                        "POSITION": 3,
+                        "NORMAL": 4
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Pine Trees",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "RootNode",
+            "children": [
+                2
+            ],
+            "extras": {
+                "name": "RootNode"
+            }
+        },
+        {
+            "name": "Resource_PineTree_Group",
+            "matrix": [
+                100.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.000013435885193757713,
+                -100.0,
+                0.0,
+                0.0,
+                100.0,
+                -0.000013435885193757713,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "children": [
+                3,
+                4
+            ],
+            "extras": {
+                "name": "Resource_PineTree_Group"
+            }
+        },
+        {
+            "name": "Resource_PineTree_Group_1",
+            "mesh": 0
+        },
+        {
+            "name": "Resource_PineTree_Group_2",
+            "mesh": 1
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
