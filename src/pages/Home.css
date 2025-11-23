@@ -5,3 +5,35 @@
     border-radius: 20px;
     background-color: black;
 }
+.annotation {
+  transition: all 0.5s ease-in-out;
+  box-shadow: inset 0 0 0 0.09px white;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: 8px;
+  font-weight: 300;
+  background: indianred;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.annotation:hover {
+  box-shadow: inset 250px 0 0 0 transparent;
+  color: black;
+}
+
+.anotation-text{
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
