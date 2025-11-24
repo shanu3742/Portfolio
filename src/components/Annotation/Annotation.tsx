@@ -1,17 +1,35 @@
 import { Html, } from '@react-three/drei'
 
-function Annotation({ children, ...props }) {
-    return (
-        <Html
+function Annotation({ children, distanceFactor, ...props }) {
+
+    if (distanceFactor) {
+        return <Html
             {...props}
             transform
             occlude="blending"
+            wrapperClass="html-screen"
+            distanceFactor={distanceFactor}
+        >
+
+            {children}
+
+        </Html>
+    } else {
+        return <Html
+            {...props}
+            transform
+            occlude="blending"
+            wrapperClass="html-screen"
+
+
         >
             <div className="annotation">
                 {children}
             </div>
         </Html>
-    )
+    }
+
+
 }
 
 export default Annotation
