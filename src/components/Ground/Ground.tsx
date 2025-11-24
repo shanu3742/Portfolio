@@ -1,7 +1,7 @@
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo } from 'react'
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 const Ground = () => {
 
     const textures = useTexture({
@@ -36,7 +36,7 @@ const Ground = () => {
     }, [textures])
 
     return (
-        <RigidBody type='fixed' restitution={0.2} friction={1} key={length}>
+        <RigidBody type='fixed' colliders={false} restitution={0.2} friction={0} key={length}>
             <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 scale={[10, 10, 10]}
@@ -65,6 +65,12 @@ const Ground = () => {
                     }}
                 />
             </mesh>
+            <CuboidCollider
+                args={[5*10, 0.1, 5*10]}           // half sizes for 10×10 ground
+                position={[0, 3, 0]}      // perfectly aligned
+                restitution={0.2}
+                friction={1}
+            />
         </RigidBody>
     )
 }

@@ -12,7 +12,7 @@ const BilBoard = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsBilBoardInit(true)
-        }, 1500 * 2)
+        }, 1500 * 10)
     }, [])
 
     useEffect(() => {
@@ -37,8 +37,8 @@ const BilBoard = () => {
         <>
             {
                 isBilBoardInit &&
-                <group position={[-5, 0, -3.5]}>
-                    <RigidBody type='fixed' colliders="cuboid" position={[0, 2, 0]} restitution={0} friction={1} >
+                <group position={[-7, 4, -3.5]}>
+                  
                         <Center>
                             {/* Group both Html and board */}
 
@@ -80,7 +80,7 @@ const BilBoard = () => {
                                 </group>
                             </group>
                         </Center>
-                    </RigidBody>
+                  
                 </group>
             }
         </>

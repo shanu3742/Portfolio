@@ -44,7 +44,7 @@ const Home: React.FC = () => {
 
           <directionalLight position={[5, 5, 5]} intensity={1} />
 
-          {/* <OrbitControls /> */}
+          <OrbitControls />
           <SceneEnvironment />
           {/* 
             * physics wrapper from rapier to add physics to the scene
