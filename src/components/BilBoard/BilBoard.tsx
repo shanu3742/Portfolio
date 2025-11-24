@@ -3,9 +3,10 @@ import { Center, Html } from '@react-three/drei';
 import React, { useEffect, useRef, useState } from 'react';
 import { RigidBody } from "@react-three/rapier"
 import Annotation from '../Annotation/Annotation';
+import Hero from '../view/Hero';
 
 const BilBoard = () => {
-
+   const [imageSrc,setImageSrc] = useState('./image/hero.png')
     const bilboardHtmlRef = useRef(null);
     const currentPageSection = useRef('home')
     const [isBilBoardInit, setIsBilBoardInit] = useState(false);
@@ -18,11 +19,17 @@ const BilBoard = () => {
     useEffect(() => {
         const handleMessage = (event) => {
             if (event.data?.type === 'portfolio-message') {
+               const pagedata =  event.data.payload.section
+                if(bilboardHtmlRef.current && pagedata && pagedata==='hero' && imageSrc !== `./image/hero.png`){
+                        setImageSrc(`./image/hero.png`)
+                }
                 console.log('section', event.data.payload.section)
+                const navigationList = ['about','contact','experience','project','skills']
                 const pageSection = event.data.payload.section;
-                if (bilboardHtmlRef.current && pageSection && pageSection !== currentPageSection.current) {
+                if (bilboardHtmlRef.current && pageSection && pageSection !== currentPageSection.current && navigationList.includes(pageSection)) {
                     currentPageSection.current = pageSection
-                    bilboardHtmlRef.current.src = `/portfolio/shanu.portfolio.html#${pageSection}`
+                    // bilboardHtmlRef.current.src = `/portfolio/shanu.portfolio.html#${pageSection}`
+                    setImageSrc(`./image/${pageSection}.png`)
                 }
 
 
@@ -47,21 +54,11 @@ const BilBoard = () => {
                                     <span className="anotation-text">Laptop Screen View</span>
                                 </Annotation>
                                 {/* HTML iframe */}
-                                <Html
-                                    style={{ pointerEvents: 'none' }}
-                                    transform
-                                    wrapperClass="html-screen"
-                                    distanceFactor={1.6}
-                                    position={[0, 0, 0]} // Slightly in front
+                                <Annotation
+                                   
                                 >
-                                    <iframe
-                                        ref={bilboardHtmlRef}
-                                        src={`./portfolio/shanu.portfolio.html`}
-                                        width="400"
-                                        height="250"
-                                        style={{ border: 'none', borderRadius: '10px' }}
-                                    />
-                                </Html>
+                                   <Hero />
+                                </Annotation>
 
                                 {/* Billboard behind HTML */}
                                 <group position={[0, 0, -0.01]}>
