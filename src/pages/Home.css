@@ -37,3 +37,24 @@
     padding-bottom: 5px;
 
 }
+.anotation-view-text-xl{
+  font-size: 36px !important;
+}
+.anotation-view-text-md{
+  font-size: 34px !important;
+}
+.anotation-view-text-sm{
+  font-size: 30px !important;
+}
+.anotation-view-text-xxsm{
+  font-size: 16px !important;
+}
+.anotation-view-text-xsm{
+  font-size: 28px !important;
+}
+.anotation-view-text-2xl{
+  font-size: 48px !important;
+}
+.anotation-view-text-normal{
+  font-size: 20px !important;
+}

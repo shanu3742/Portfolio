@@ -4,7 +4,7 @@ import PortfolioLayout from './PortfolioLayout'
 const About = () => {
     return (
         <PortfolioLayout>
-            <section id="about" className="px-6 py-16 md:py-24 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-gray-950 rounded-xl my-12 shadow-lg">
+            <section id="about" className=" flex flex-col md:flex-row items-center gap-12 bg-gray-950 rounded-xl my-12 shadow-lg" style={{width:'1024px',height:'1024px'}}>
                 <div className="md:w-1/3 flex-shrink-0">
                     <img
                         src="/image/shanu.png"
@@ -14,8 +14,8 @@ const About = () => {
 
                 </div>
                 <div className="md:w-2/3 text-center md:text-left">
-                    <h3 className="text-4xl font-bold mb-6 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">About Me</h3>
-                    <p className="text-lg leading-relaxed text-gray-300">
+                    <h3 className="anotation-view-text-2xl font-bold mb-6 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">About Me</h3>
+                    <p className="anotation-view-text-md leading-relaxed text-gray-300">
                         Hi, I’m <strong className="font-semibold text-blue-400">Kumar Shanu</strong>, a passionate
                         <strong className="font-semibold text-blue-400">Frontend Developer</strong> and
                         <strong className="font-semibold text-blue-400">Data Visualization Engineer</strong> with 4+ years of hands-on experience.

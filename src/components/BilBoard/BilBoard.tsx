@@ -37,16 +37,16 @@ const BilBoard = () => {
     if (!isBilBoardInit) return null;
 
     return (
-        <group position={[-7, 5, -3.5]}>
+        <group position={[-1, 6, -3.5]}>
             <Center>
                 <group position={[0, 2, 0]} rotation={[0, Math.PI / 4, 0]}>
                     {/* Annotation */}
-                    <Annotation position={[-8.5, 2, -2]}>
+                    <Annotation position={[8.8, -4, -2]}>
                         <span className="anotation-text">Laptop Screen View</span>
                     </Annotation>
 
                     {/* Page View */}
-                    <Annotation distanceFactor={4}>
+                    <Annotation distanceFactor={3.5}>
 
                         <PageView
                             key={imageSrc}
@@ -58,12 +58,12 @@ const BilBoard = () => {
 
                     {/* Stand Behind Billboard */}
                     <group position={[0, 0, -0.01]}>
-                        <mesh position={[-2, -1.55, -0.05]}>
+                        <mesh position={[-2, -4, -0.05]}>
                             <boxGeometry args={[0.1, 8, 0.1]} />
                             <meshStandardMaterial color="#555555" />
                         </mesh>
 
-                        <mesh position={[2, -1.55, -0.05]}>
+                        <mesh position={[2, -4, -0.05]}>
                             <boxGeometry args={[0.1, 8, 0.1]} />
                             <meshStandardMaterial color="#555555" />
                         </mesh>

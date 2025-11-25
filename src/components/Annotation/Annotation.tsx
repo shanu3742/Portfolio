@@ -6,8 +6,7 @@ function Annotation({ children, distanceFactor, ...props }) {
         return <Html
             {...props}
             transform
-            occlude="blending"
-            wrapperClass="html-screen"
+            wrapperClass="view-screen"
             distanceFactor={distanceFactor}
         >
 

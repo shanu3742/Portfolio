@@ -4,7 +4,7 @@ import PortfolioLayout from './PortfolioLayout'
 const Experience = () => {
     return (
         <PortfolioLayout>
-            <section id="experience" className="bg-gray-900 px-6 py-16 md:py-24 rounded-xl shadow-lg mx-auto max-w-6xl my-12">
+            <section id="experience" className="bg-gray-900 px-6 py-16 md:py-24 rounded-xl shadow-lg mx-auto max-w-6xl my-12" style={{width:'1024px',height:'1024px'}}>
                 <div className="max-w-5xl mx-auto text-center">
                     <h3 className="text-4xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Experience</h3>
                     <div className="space-y-8 text-left relative before:absolute before:left-1/2 before:-translate-x-1/2 before:w-1 before:h-full before:bg-gray-700 before:rounded-full md:before:left-0 md:before:translate-x-0">
@@ -20,8 +20,8 @@ const Experience = () => {
 
                                 <div className="relative z-20">
                                     <h4 className="text-2xl font-bold text-blue-400 mb-2">StockEdge</h4>
-                                    <p className="text-gray-400 text-sm mb-3">Nov 2022 - Present</p>
-                                    <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                                    <p className="text-gray-400 text-sm mb-3 ">Nov 2022 - Present</p>
+                                    <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 anotation-view-text-normal">
                                         <li>Improved performance of legacy Angular codebase, resulting in a <strong>20% reduction in load time</strong> for key modules.</li>
                                         <li>Developed and integrated advanced financial charting components using D3.js, providing users with deeper analytical insights.</li>
                                         <li>Collaborated with backend teams to optimize API interactions and data fetching for enhanced responsiveness.</li>
@@ -46,7 +46,7 @@ const Experience = () => {
                                 <div className="relative z-20">
                                     <h4 className="text-2xl font-bold text-blue-400 mb-2">Aarth Software</h4>
                                     <p className="text-gray-400 text-sm mb-3">Jun 2021 - Nov 2022</p>
-                                    <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                                    <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 anotation-view-text-normal">
                                         <li>Led the frontend development team for the "Curry Company" web application, overseeing UI/UX implementation.</li>
                                         <li>Designed and built a dynamic SPARQL query builder and various visual data tools using D3.js for complex data exploration.</li>
                                         <li>Implemented responsive designs and ensured cross-browser compatibility for all web applications.</li>
