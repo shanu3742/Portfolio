@@ -36,7 +36,7 @@ const Ground = () => {
     }, [textures])
 
     return (
-        <RigidBody type='fixed' colliders={false} restitution={0.2} friction={0} key={length}>
+        <RigidBody position={[0, -2, 0]} name='ground' type='fixed' colliders={false} restitution={0.2} friction={0} key={length}>
             <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 scale={[10, 10, 10]}
@@ -66,7 +66,7 @@ const Ground = () => {
                 />
             </mesh>
             <CuboidCollider
-                args={[5*10, 0.1, 5*10]}           // half sizes for 10×10 ground
+                args={[5 * 10, 0.1, 5 * 10]}           // half sizes for 10×10 ground
                 position={[0, 3, 0]}      // perfectly aligned
                 restitution={0.2}
                 friction={1}
