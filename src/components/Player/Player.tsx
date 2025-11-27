@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
-import { CapsuleCollider, RigidBody } from '@react-three/rapier'
+import { CapsuleCollider, RapierRigidBody, RigidBody } from '@react-three/rapier'
 import { useKeyboardControls } from '@react-three/drei'
 import { Controls } from '../../App'
 import { useFrame } from '@react-three/fiber'
@@ -8,15 +8,16 @@ import { useFrame } from '@react-three/fiber'
 const Player = () => {
     const [subscribeKeys, getKeys] = useKeyboardControls()
     const [animation,setAnimation] = useState(AnimationNames.Idle)
+    const body = useRef<RapierRigidBody | null>(null);
     // onCollisionEnter={playSound}
 
-    useFrame(() => {
+    useFrame((state,delta) => {
         // left = 'left',
         // right = 'right',
         // jump = 'jump',
         const { forward, backward, leftward, rightWard ,jump} = getKeys();
         if(forward){
-            playerWalkFront()
+            playerWalkFront(delta)
         }
         if(backward){
             playerWalkBack()
@@ -31,8 +32,30 @@ const Player = () => {
             playerJump()
         }
     })
-    
-   const  playerWalkFront = () => {
+  const walkingRef= useRef(null)  
+   const  playerWalkFront = (delta) => {
+    setAnimation(AnimationNames.Walk)
+    const impulse = { x: 0, y: 0, z: 0 };
+    const torque = { x: 0, y: 0, z: 0 };
+    const impulseStrength = 0.6 * delta;
+    const torqueStrength = 0.2 * delta;
+   
+    if (body.current) {
+        impulse.z += impulseStrength;
+        torque.x -= torqueStrength;
+        body.current.applyImpulse(impulse, true);
+        body.current.applyTorqueImpulse(torque, true);
+       
+        if(walkingRef.current){
+            clearTimeout(walkingRef.current)
+            walkingRef.current=null
+        }
+
+     walkingRef.current=   setTimeout(() => {
+            setAnimation(AnimationNames.Idle)
+        },500)
+    }
+
         console.log('player  walk front')
     }
     const  playerWalkBack = () => {
@@ -64,7 +87,8 @@ const Player = () => {
 
 
     return (
-        <RigidBody 
+        <RigidBody
+        ref={body} 
         colliders={'hull'}
         position={[2, 10, 5]}
         restitution={0.0}
