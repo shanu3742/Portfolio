@@ -9,6 +9,7 @@ const Player = () => {
     const [subscribeKeys, getKeys] = useKeyboardControls()
     const [animation,setAnimation] = useState(AnimationNames.Idle)
     const body = useRef<RapierRigidBody | null>(null);
+    const manRef = useRef(null)
     // onCollisionEnter={playSound}
 
     useFrame((state,delta) => {
@@ -34,7 +35,8 @@ const Player = () => {
     })
   const walkingRef= useRef(null)  
    const  playerWalkFront = (delta) => {
-    setAnimation(AnimationNames.Walk)
+    console.log(manRef.current)
+    manRef.current?.play(AnimationNames.Walk)
     const impulse = { x: 0, y: 0, z: 0 };
     const torque = { x: 0, y: 0, z: 0 };
     const impulseStrength = 0.6 * delta;
@@ -52,7 +54,7 @@ const Player = () => {
         }
 
      walkingRef.current=   setTimeout(() => {
-            setAnimation(AnimationNames.Idle)
+        manRef.current?.play(AnimationNames.Idle)
         },500)
     }
 
@@ -96,7 +98,7 @@ const Player = () => {
         mass={1}
         enabledRotations={[false, false, false]}  // prevents falling over
       >
-          <Man animationType={animation} scale={0.25} />  
+          <Man  scale={0.25} ref={manRef} />  
       </RigidBody>
     )
 }

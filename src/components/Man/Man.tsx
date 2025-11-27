@@ -61,21 +61,43 @@ export enum AnimationNames  {
     
 }
 
-import React, { useEffect, useRef } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
-export function Man(props) {
+export const    Man = forwardRef((props,ref) =>  {
     
-  const group = useRef()
+  const group = useRef(null)
   const { nodes, materials, animations } = useGLTF('/model/Man/Man.gltf')
   const { actions,names } = useAnimations(animations, group);
 
-      useEffect(() => {
-        actions[props.animationType]?.reset().fadeIn(0.5).play()
-        return () => {
-            actions[props.animationType]?.fadeOut(0.5)
+    //   useEffect(() => {
+    //     actions[props.animationType]?.reset().fadeIn(0.5).play()
+    //     return () => {
+    //         actions[props.animationType]?.fadeOut(0.5)
+    //     }
+    // }, [props.animationType])
+
+    const currentAction = useRef(null)
+
+    // Expose play(name) to parent
+    useImperativeHandle(ref, () => ({
+      play(name) {
+        if (currentAction.current !== name) {
+          actions[name]?.reset().fadeIn(0.2).play()
+          if (currentAction.current) {
+            actions[currentAction.current]?.fadeOut(0.2)
+          }
+          currentAction.current = name
         }
-    }, [props.animationType])
+      }
+    }))
+  
+    useEffect(() => {
+      const idle = AnimationNames.Idle
+      actions[idle]?.reset().fadeIn(0.2).play()
+      currentAction.current = idle
+    }, [])
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -131,7 +153,7 @@ export function Man(props) {
       </group>
     </group>
   )
-}
+})
 
 useGLTF.preload('/model/Man/Man.gltf')
 
