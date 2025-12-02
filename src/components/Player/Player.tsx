@@ -43,7 +43,7 @@ const Player = () => {
         manRef.current?.play(AnimationNames.Walk)
         const impulse = { x: 0, y: 0.1, z: 0 };
         const torque = { x: 0, y: 0, z: 0 };
-        const impulseStrength = 0.6 * delta;
+        const impulseStrength = 0.6 * delta; // force * 🔼t(change in time)
         const torqueStrength = 0.2 * delta;
 
         if (body.current) {

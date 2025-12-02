@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Grid, OrbitControls, Stats } from '@react-three/drei';
 import './Home.css';
 import Experience from '../Experience';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Physics } from '@react-three/rapier'
 import SceneEnvironment from '../components/SceneEnvirnoment/SceneEnvirnoment';
 
@@ -39,13 +39,14 @@ const Home: React.FC = () => {
           * to add  envirnoment we creted custom sceneEnvirnoment component
         */}
         <Canvas camera={{ position: [0, 1, 4.5] }}  >
-          <color args={['#252731']} attach='background' />
           <ambientLight intensity={0.5} />
 
           <directionalLight position={[5, 5, 5]} intensity={1} />
 
           <OrbitControls />
-          <SceneEnvironment />
+          <Suspense fallback={null}>
+            <SceneEnvironment />
+          </Suspense>
           {/* 
             * physics wrapper from rapier to add physics to the scene
            */}
@@ -54,7 +55,7 @@ const Home: React.FC = () => {
           </Physics>
           <Stats />
 
-          <Grid sectionSize={3}
+          {/* <Grid sectionSize={3}
             sectionColor={'purple'}
             sectionThickness={1}
             cellSize={1}
@@ -62,7 +63,7 @@ const Home: React.FC = () => {
             cellThickness={0.6}
             fadeDistance={50}
             fadeStrength={5}
-            infiniteGrid />
+            infiniteGrid /> */}
 
 
         </Canvas>

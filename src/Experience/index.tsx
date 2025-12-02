@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BilBoard from "../components/BilBoard/BilBoard";
 import Garden from "../components/Garden/Garden";
 import Ground from "../components/Ground/Ground";
@@ -11,9 +12,15 @@ const Experience = () => {
   return <>
     <WorkingDesk />
     <BilBoard />
-    <Garden />
-    <Player />
-    <Village />
+    <Suspense fallback={null}>
+      <Garden />
+    </Suspense>
+     <Suspense fallback={null}>
+        <Player />
+     </Suspense>
+      <Suspense fallback={null}>
+          <Village />
+      </Suspense>
     <Ground />
 
 
