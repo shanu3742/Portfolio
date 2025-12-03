@@ -3,7 +3,7 @@ import { Instances, Instance, useGLTF } from '@react-three/drei'
 import * as d3 from 'd3'
 import  normalTress  from '../../../setting/normaltree.json'
   
-export function NormalTreeInstanced() {
+export function NormalTreeInstance() {
   const { nodes, materials } = useGLTF('/model/tree/NormalTree.gltf')
   const zScale  = d3.scaleLinear().domain([0,1]).range([-2,-50])
   const xScale  = d3.scaleLinear().domain([0,1]).range([-50,50])
@@ -27,8 +27,6 @@ export function NormalTreeInstanced() {
       <Instances
         geometry={nodes.Cube.geometry}
         material={materials.Material}
-        castShadow
-        receiveShadow
       >
         {trees.map((tree, i) => (
           <Instance
@@ -48,8 +46,6 @@ export function NormalTreeInstanced() {
       <Instances
         geometry={nodes.Icosphere003.geometry}
         material={materials['Material.001']}
-        castShadow
-        receiveShadow
       >
         {trees.map((tree, i) => (
           <Instance
