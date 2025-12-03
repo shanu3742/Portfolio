@@ -10,7 +10,6 @@ const Player = () => {
         return new Audio('./mp3/footstep.mp3')
     })
     const [subscribeKeys, getKeys] = useKeyboardControls()
-    const [animation, setAnimation] = useState(AnimationNames.Idle)
     const body = useRef<RapierRigidBody | null>(null);
     const walkingRef = useRef(null)
     const manRef = useRef(null)
@@ -20,7 +19,7 @@ const Player = () => {
         // left = 'left',
         // right = 'right',
         // jump = 'jump',
-        const { forward, backward, leftward, rightWard, jump } = getKeys();
+        const { forward, backward, leftward, rightward, jump } = getKeys();
         if (forward) {
             playerWalkFront(delta)
         }
@@ -30,8 +29,8 @@ const Player = () => {
         if (leftward) {
             playerMoveLeft(delta)
         }
-        if (rightWard) {
-            playerMoveRight()
+        if (rightward) {
+            playerMoveRight(delta)
         }
         if (jump) {
             playerJump()
@@ -39,31 +38,45 @@ const Player = () => {
     })
 
     const playerWalkFront = (delta) => {
-        console.log(manRef.current)
         manRef.current?.play(AnimationNames.Walk)
-        const impulse = { x: 0, y: 0.1, z: 0 };
-        const torque = { x: 0, y: 0, z: 0 };
-        const impulseStrength = 0.6 * delta; // force * 🔼t(change in time)
-        const torqueStrength = 0.2 * delta;
-
-        if (body.current) {
-            impulse.z += impulseStrength;
-            torque.x -= torqueStrength;
-            body.current.applyImpulse(impulse, true);
-            body.current.applyTorqueImpulse(torque, true);
-
-            if (walkingRef.current) {
-                clearTimeout(walkingRef.current)
-                walkingRef.current = null
-            }
-
-            walkingRef.current = setTimeout(() => {
-                manRef.current?.play(AnimationNames.Idle)
-            }, 500)
+    
+        const impulseStrength = 1.2 * delta
+    
+        if (!body.current) return
+    
+        // ✅ Get Y rotation from Rapier rigidbody quaternion
+        const rot = body.current.rotation()
+    
+        // ✅ Convert rotation to forward direction
+        const forward = {
+            x: Math.sin(rot.y),
+            y: 0,
+            z: Math.cos(rot.y)
         }
-
-        console.log('player  walk front')
+    
+        // ✅ Apply impulse in facing direction
+        body.current.applyImpulse(
+            {
+                x: forward.x * impulseStrength,
+                y: 0,
+                z: forward.z * impulseStrength
+            },
+            true
+        )
+    
+        // ✅ Reset walk animation properly
+        if (walkingRef.current) {
+            clearTimeout(walkingRef.current)
+            walkingRef.current = null
+        }
+    
+        walkingRef.current = setTimeout(() => {
+            manRef.current?.play(AnimationNames.Idle)
+        }, 300)
+    
+        console.log('player walk front')
     }
+    
 
     const playerWalkBack = (delta) => {
         manRef.current?.play(AnimationNames.Walk);
@@ -71,10 +84,6 @@ const Player = () => {
         const impulseStrength = 0.6 * delta;
 
         if (body.current) {
-
-            // 1️⃣ Rotate Character (180 degrees to face back)
-
-
             // 2️⃣ Apply backward movement AFTER rotation
             const impulse = { x: 0, y: 0, z: -impulseStrength };
             body.current.applyImpulse(impulse, true);
@@ -124,12 +133,14 @@ const Player = () => {
         hitSound.play()
     }
     const playerMoveLeft = (delta) => {
+        console.log('right')
         const angleY = body.current.rotation().y + Math.PI / 2; // face left
         body.current.setRotation({ x: 0, y: angleY, z: 0, w: 1 }, true);
         moveInDirection(delta, angleY);
     };
 
     const playerMoveRight = (delta) => {
+        console.log('right')
         const angleY = body.current.rotation().y - Math.PI / 2; // face right
         body.current.setRotation({ x: 0, y: angleY, z: 0, w: 1 }, true);
         moveInDirection(delta, angleY);
