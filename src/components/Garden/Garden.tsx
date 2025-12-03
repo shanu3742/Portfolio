@@ -3,6 +3,10 @@ import { PineTree } from '../Tree/PineTrees/PineTrees'
 import { RigidBody } from '@react-three/rapier'
 import { PalmTree } from '../Tree/PalmTrees/PalmTrees';
 import { NormalTree } from '../Tree/NormalTree/NormalTree';
+import PalmTreeInstance from '../Tree/PalmTrees/PalmTreesInstance';
+import { NormalTreeInstances } from '../Tree/NormalTree/NormalTreeInstance';
+import { NormalTreeInstanced } from '../Tree/NormalTree/NormalTreeInstaced';
+
 
 // --- Configuration ---
 const NUMBER_OF_TREES = 50; // You can set this to any high number
@@ -61,41 +65,18 @@ const Garden = () => {
 
     return (
         <>
-            {/* Note: Using a single RigidBody around ALL trees might cause performance issues
-              for the physics engine with thousands of colliders.
-              For static/fixed objects like this, you might consider using an 
-              <InstancedRigidBody> or wrapping each tree in its own <RigidBody>.
-              For this example, we keep the single wrapper as you had it, but be mindful 
-              of performance. The key prop is no longer needed on RigidBody here.
-            */}
-            <RigidBody type='fixed' colliders="cuboid" restitution={0.2} friction={1}>
-                {/* 2. Map over the large array to render all trees */}
-                <>
-                    {treePositions.map((position, index) => (
-                        <group
-                            key={index}
-                            position={position} // [randomX, FIXED_Y, randomZ]
-                            scale={SCALE}
-                        >
-                            <PalmTree />
-                        </group>
-                    ))}
-                </>
-                <>
-                    {normalTreePositions.map((position, index) => (
-                        <group
-                            key={index}
-                            position={position} // [randomX, FIXED_Y, randomZ]
-                            scale={NormalTreeSCALE}
-                        >
-                            <NormalTree />
-                        </group>
-                    ))}
-                </>
-
-            </RigidBody >
+           <PalmTreeInstance scaleIndex={16} />
+           <NormalTreeInstanced />
+           
         </>
     )
 }
 
 export default Garden
+
+{/* <PalmTreeInstance scaleIndex={16} />
+<Suspense fallback={null}>
+   <PineTreeInstance count={3}  />
+</Suspense> */}
+
+
