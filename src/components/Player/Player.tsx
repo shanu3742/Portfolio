@@ -77,8 +77,8 @@ const Player = () => {
   return (
     <RigidBody
       ref={body}
-      colliders={false}
-      position={[2, 10, 5]}
+      colliders={'hull'}
+      position={[0, 10, 5]}
       restitution={0}
       friction={1}
       mass={1}
@@ -86,7 +86,7 @@ const Player = () => {
       onCollisionEnter={playerHitGround}
     >
       {/* ✅ Correct capsule for player */}
-      <CapsuleCollider args={[0.55, 0.35]} />
+      {/* <CapsuleCollider args={[0.3, 0.35]} /> */}
 
       <Man scale={0.25} ref={manRef} />
     </RigidBody>
