@@ -1,16 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
-import { RapierRigidBody, RigidBody } from '@react-three/rapier'
+import { RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
 import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const SPEED = 6
-const JUMP_FORCE = 6 // Adjusted slightly for better feel
+const JUMP_FORCE = 6
 
 const Player = () => {
-  const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
+  // 1. Get access to the Rapier world and instance
+  const { rapier, world } = useRapier()
 
+  const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
   const [, getKeys] = useKeyboardControls()
   const body = useRef<RapierRigidBody | null>(null)
   const manRef = useRef(null)
@@ -23,11 +25,11 @@ const Player = () => {
   useFrame((state) => {
     if (!body.current) return
 
-    const { forward, backward, leftward, rightward, jump } = getKeys()
+    const { forward, backward, leftward, rightward } = getKeys()
     const velocity = body.current.linvel()
     const translation = body.current.translation()
 
-    // --- MOVEMENT CALCULATIONS ---
+    // --- MOVEMENT ---
     frontVector.set(0, 0, backward - forward)
     sideVector.set(leftward - rightward, 0, 0)
 
@@ -41,11 +43,7 @@ const Player = () => {
       true
     )
 
-    // --- JUMP PHYSICS ---
-    // Check if grounded (velocity Y is close to 0)
-    if (jump && Math.abs(velocity.y) < 0.2) {
-      body.current.applyImpulse({ x: 0, y: JUMP_FORCE, z: 0 }, true)
-    }
+
 
     // --- ROTATION ---
     if (direction.length() > 0.1) {
@@ -59,24 +57,16 @@ const Player = () => {
       )
     }
 
-    // --- ANIMATION LOGIC (FIXED) ---
-    // 1. Is the player moving up or falling down significantly?
-    const inAir = Math.abs(velocity.y) > 0.5
-    // 2. Is the player moving horizontally?
-    const moving = direction.length() > 0.1
-
-    if (inAir) {
-      // Priority 1: If in air, JUMP
-      manRef.current?.play(AnimationNames.Jump)
-    } else if (moving) {
-      // Priority 2: If on ground and moving, WALK
+    if (direction.length() > 0.1) {
       manRef.current?.play(AnimationNames.Walk)
-    } else {
-      // Priority 3: If on ground and still, IDLE
+    }
+    // 3. Otherwise, Idle
+    else {
       manRef.current?.play(AnimationNames.Idle)
     }
 
-    // --- CAMERA FOLLOW ---
+    // --- CAMERA ---
+
     cameraPosition.copy(translation)
     cameraPosition.y += 1.5
     cameraPosition.z += 5
@@ -84,8 +74,8 @@ const Player = () => {
     state.camera.lookAt(translation.x, translation.y + 1, translation.z)
   })
 
+  // Keep sound logic on collision for impact sounds
   const playerHitGround = (event) => {
-    // Only play sound if hitting the ground hard enough or actually landing
     if (event.other.rigidBodyObject?.name === 'ground') {
       playSound()
     }
@@ -108,7 +98,7 @@ const Player = () => {
       lockRotations
       onCollisionEnter={playerHitGround}
     >
-      <Man scale={0.75} ref={manRef} />
+      <Man scale={0.25} ref={manRef} />
     </RigidBody>
   )
 }

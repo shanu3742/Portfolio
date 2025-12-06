@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           {/* 
             * physics wrapper from rapier to add physics to the scene
            */}
-          <Physics debug={true}>
+          <Physics debug={false}>
             <Experience />
           </Physics>
           <Stats />
