@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
-import { CapsuleCollider, RapierRigidBody, RigidBody } from '@react-three/rapier'
+import { RapierRigidBody, RigidBody } from '@react-three/rapier'
 import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const SPEED = 6
-const JUMP_FORCE = 7
+const JUMP_FORCE = 6 // Adjusted slightly for better feel
 
 const Player = () => {
   const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
@@ -18,15 +18,16 @@ const Player = () => {
   const direction = new THREE.Vector3()
   const frontVector = new THREE.Vector3()
   const sideVector = new THREE.Vector3()
+  const cameraPosition = new THREE.Vector3()
 
-  // ✅ MAIN MOVEMENT LOOP (CORRECT WAY)
-  useFrame(() => {
+  useFrame((state) => {
     if (!body.current) return
 
     const { forward, backward, leftward, rightward, jump } = getKeys()
     const velocity = body.current.linvel()
+    const translation = body.current.translation()
 
-    // ✅ Build direction
+    // --- MOVEMENT CALCULATIONS ---
     frontVector.set(0, 0, backward - forward)
     sideVector.set(leftward - rightward, 0, 0)
 
@@ -35,18 +36,18 @@ const Player = () => {
       .normalize()
       .multiplyScalar(SPEED)
 
-    // ✅ Apply movement (preserve gravity)
     body.current.setLinvel(
       { x: direction.x, y: velocity.y, z: direction.z },
       true
     )
 
-    // ✅ Jump (grounded check)
-    if (jump && Math.abs(velocity.y) < 0.05) {
+    // --- JUMP PHYSICS ---
+    // Check if grounded (velocity Y is close to 0)
+    if (jump && Math.abs(velocity.y) < 0.2) {
       body.current.applyImpulse({ x: 0, y: JUMP_FORCE, z: 0 }, true)
     }
 
-    // ✅ Rotate player toward movement
+    // --- ROTATION ---
     if (direction.length() > 0.1) {
       const angle = Math.atan2(direction.x, direction.z)
       body.current.setRotation(
@@ -56,13 +57,35 @@ const Player = () => {
         ),
         true
       )
+    }
+
+    // --- ANIMATION LOGIC (FIXED) ---
+    // 1. Is the player moving up or falling down significantly?
+    const inAir = Math.abs(velocity.y) > 0.5
+    // 2. Is the player moving horizontally?
+    const moving = direction.length() > 0.1
+
+    if (inAir) {
+      // Priority 1: If in air, JUMP
+      manRef.current?.play(AnimationNames.Jump)
+    } else if (moving) {
+      // Priority 2: If on ground and moving, WALK
       manRef.current?.play(AnimationNames.Walk)
     } else {
+      // Priority 3: If on ground and still, IDLE
       manRef.current?.play(AnimationNames.Idle)
     }
+
+    // --- CAMERA FOLLOW ---
+    cameraPosition.copy(translation)
+    cameraPosition.y += 1.5
+    cameraPosition.z += 5
+    state.camera.position.lerp(cameraPosition, 0.1)
+    state.camera.lookAt(translation.x, translation.y + 1, translation.z)
   })
 
   const playerHitGround = (event) => {
+    // Only play sound if hitting the ground hard enough or actually landing
     if (event.other.rigidBodyObject?.name === 'ground') {
       playSound()
     }
@@ -78,17 +101,14 @@ const Player = () => {
     <RigidBody
       ref={body}
       colliders={'hull'}
-      position={[0, 10, 5]}
+      position={[1, 10, 1.2]}
       restitution={0}
       friction={1}
       mass={1}
       lockRotations
       onCollisionEnter={playerHitGround}
     >
-      {/* ✅ Correct capsule for player */}
-      {/* <CapsuleCollider args={[0.3, 0.35]} /> */}
-
-      <Man scale={0.25} ref={manRef} />
+      <Man scale={0.75} ref={manRef} />
     </RigidBody>
   )
 }
