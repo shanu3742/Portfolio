@@ -2,7 +2,7 @@ import PortfolioLayout from "./PortfolioLayout"
 
 const Hero = () => {
   return <PortfolioLayout>
-    <section id="hero" className="anotation-view-text-xl relative text-center py-20 md:py-28 bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden rounded-b-xl shadow-inner" style={{width:'1024px',height:'1024px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+    <section id="hero" className="anotation-view-text-xl relative text-center py-20 md:py-28 bg-gradient-to-br from-gray-800 to-gray-900 text-white overflow-hidden rounded-b-xl shadow-inner" style={{ width: '1024px', height: '524px', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflowY: 'auto' }}>
       <div className="absolute inset-0 z-0 opacity-10">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none">
           <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="0.5" className="text-gray-700"></circle>

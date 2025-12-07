@@ -1,12 +1,2 @@
 @import "tailwindcss";
 
-.billboard-screen {
-  width: 1440px;   /* 🎯 Adjust based on your 3D scene size */
-  height: 875px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  background: black; /* fallback if iframe loads later */
-
-  
-}

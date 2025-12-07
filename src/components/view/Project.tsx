@@ -4,7 +4,7 @@ import PortfolioLayout from './PortfolioLayout'
 const Project = () => {
     return (
         <PortfolioLayout>
-            <section id="projects" className="px-6  max-w-6xl mx-auto rounded-xl my-12" style={{width:'1024px',height:'1024px'}}>
+            <section id="projects" className="px-6  max-w-6xl mx-auto rounded-xl my-12" style={{ width: '1024px', height: '524px', overflowY: 'auto' }}>
                 <h3 className="anotation-view-text-2xl font-bold mb-10 text-center text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Projects</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
