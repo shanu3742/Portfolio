@@ -4,6 +4,7 @@ import { Temple } from '../Temple/Temple'
 import { ClassicalHouse } from '../House/PoorHouse/ClassicalHouse'
 import { Grass } from '../Grass/Grass'
 import { RigidBody } from '@react-three/rapier'
+import ClassicHouseInstance from '../House/PoorHouse/ClassicHouseInstance'
 
 const Village = () => {
     return (
@@ -31,7 +32,9 @@ const Village = () => {
                 <Grass scale={[4, 4, 4]} position={[-3, 0.7, 8.5]} />
                 <ClassicalHouse scale={[0.00025 * 15, 0.00025 * 15, 0.00025 * 15]} position={[-3, 0.85, 7]} />
             </group>
-
+            <group>
+                <ClassicHouseInstance />
+            </group>
         </>
     )
 }
