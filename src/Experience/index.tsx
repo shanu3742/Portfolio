@@ -4,6 +4,7 @@ import Garden from "../components/Garden/Garden";
 import Ground from "../components/Ground/Ground";
 import Player from "../components/Player/Player";
 import Village from "../components/Village/Village";
+import Boundries from "../components/Boundries/Boundries";
 
 
 
@@ -23,7 +24,7 @@ const Experience = () => {
     </Suspense>
     <BilBoard />
     <Ground />
-
+    <Boundries />
 
   </>;
 };

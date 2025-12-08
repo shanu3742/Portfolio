@@ -91,7 +91,7 @@ const Player = () => {
     <RigidBody
       ref={body}
       colliders={'hull'}
-      position={[1, 10, 1.2]}
+      position={[1, 1, 1.2]}
       restitution={0}
       friction={1}
       mass={1}
