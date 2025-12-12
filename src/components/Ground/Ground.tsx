@@ -2,6 +2,7 @@ import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo } from 'react'
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
+import Button from '../Button/Button';
 const Ground = () => {
 
     const textures = useTexture({
@@ -36,6 +37,7 @@ const Ground = () => {
     }, [textures])
 
     return (
+    <>
         <RigidBody position={[0, -2, 0]} name='ground' type='fixed' colliders={false} restitution={0.2} friction={0} key={length}>
             <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
@@ -72,6 +74,8 @@ const Ground = () => {
                 friction={1}
             />
         </RigidBody>
+    
+    </>
     )
 }
 
