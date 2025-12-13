@@ -10,7 +10,7 @@ const FONT_URL = "font/helvetik.json";
 // and place it in your 'public' folder or similar.
 
 function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
-
+  const [hitSound] = useState(() => new Audio('./mp3/click.wav'))
   const meshRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHover] = useState(false);
@@ -58,6 +58,7 @@ function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, t
     // Call the user's onClick function
     if (onClick) {
       onClick();
+      playSound()
     }
 
     // Release the button after a short moment
@@ -65,6 +66,12 @@ function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, t
       setClick(false);
     }, 150);
   };
+
+  const playSound = () => {
+    hitSound.currentTime = 0
+    hitSound.volume = Math.random()
+    hitSound.play()
+  }
 
   return (
     <group ref={meshRef} position={position}>

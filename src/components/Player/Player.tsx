@@ -67,11 +67,11 @@ const Player = () => {
 
     // --- CAMERA ---
 
-    // cameraPosition.copy(translation)
-    // cameraPosition.y += 1.5
-    // cameraPosition.z += 5
-    // state.camera.position.lerp(cameraPosition, 0.1)
-    // state.camera.lookAt(translation.x, translation.y + 1, translation.z)
+    cameraPosition.copy(translation)
+    cameraPosition.y += 1.5
+    cameraPosition.z += 5
+    state.camera.position.lerp(cameraPosition, 0.1)
+    state.camera.lookAt(translation.x, translation.y + 1, translation.z)
   })
 
   // Keep sound logic on collision for impact sounds

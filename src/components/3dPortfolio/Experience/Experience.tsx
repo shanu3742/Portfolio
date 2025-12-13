@@ -2,30 +2,35 @@
 import { Html } from "@react-three/drei"
 import R3Button from "../../R3Button/R3Button"
 import { useState } from "react"
-import './intro.css'
+import './Experience.css'
 import { createPortal } from "react-dom"
-
-
-import "./intro.css"
+import * as d3 from 'd3'
 import { useR3FPortfolio } from "../Index"
-const R3FIntro = () => {
+
+
+const R3FExperience = () => {
     const { activeSection, setActiveSection } = useR3FPortfolio()
+
+
     const portalRoot = document.getElementById("portfolio-view")
+
 
     return (
         <>
-            {activeSection === 'intro' && portalRoot && (
+            {activeSection === 'experience' && portalRoot && (
                 <Html>
-                    {createPortal(<IntroContent />, portalRoot)}
+                    {createPortal(<ExperienceContent />, portalRoot)}
                 </Html>
             )}
 
             <R3Button
-                text="Intro"
-                position={[0, 0.1, 0]}
+                text="Experience"
+                color="yellow"
+                hoverColor="orange"
+                position={[15, 0.5, 0]}
                 onClick={() => {
 
-                    setActiveSection('intro')
+                    setActiveSection('experience')
 
                 }}
             />
@@ -36,12 +41,11 @@ const R3FIntro = () => {
 
 
 
-const IntroContent = () => {
-
-    return <div className="portfolio-intro-container">
+const ExperienceContent = () => {
+    return <div className="portfolio-Experience-container" >
         <section className="card">
             <h1>Welcome to My 3D Portfolio</h1> <h3>
-                Introduction
+                Experience
             </h3>
             <p>
                 I am a Software Engineer and data visualization specialist with over 3 years of experience building high-performance, interactive financial applications. I specialize in D3.js–driven visualizations and have strong expertise in React, TypeScript, and Angular, with hands-on experience improving frontend performance and scalability.
@@ -53,4 +57,4 @@ const IntroContent = () => {
     </div>
 }
 
-export default R3FIntro
+export default R3FExperience
