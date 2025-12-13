@@ -21,7 +21,7 @@ const Hero = () => {
           <a href="mailto:kumarshanu.dev@gmail.com" className="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 transform">
             Hire Me
           </a>
-          <a href="./shanu.pdf" download
+          <a href="/portfolio/shanu.pdf" download
             className="border-2 border-blue-600 text-blue-400 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-blue-900 hover:text-white hover:scale-105 transition-all duration-300 transform">
             Download CV
           </a>

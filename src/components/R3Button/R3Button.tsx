@@ -1,22 +1,26 @@
-import { RoundedBox, Text3D } from "@react-three/drei";
+import { Html, RoundedBox, Text3D, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useRef, useState, useLayoutEffect } from "react";
 import * as THREE from "three";
+import './R3Button.css';
+import Arrow3D from "../Arrow3d/Arrow3d";
 const FONT_URL = "font/helvetik.json";
 // You will need a font file for Text3D.
 // Download a JSON font (like 'helvetiker_regular.typeface.json')
 // and place it in your 'public' folder or similar.
 
-function Button({ position, text, textSize = 0.5, onClick }: any) {
+function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
+
   const meshRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHover] = useState(false);
   const [clicked, setClick] = useState(false);
   const [textXOffset, setTextXOffset] = useState(0);
+  useCursor(hovered)
 
   // Set initial and pressed-down Y position
   const initialY = position ? position[1] : 0;
-  const pressedY = initialY - 0.05;
+  const pressedY = initialY - 0.5;
 
   useLayoutEffect(() => {
     if (textRef.current) {
@@ -77,7 +81,7 @@ function Button({ position, text, textSize = 0.5, onClick }: any) {
         bevelSegments={4} // Segments for the bevel geometry itself
       >
         <meshStandardMaterial
-          color={hovered ? "#4d94ff" : "#007bff"} // Change color on hover
+          color={hovered ? hoverColor : color} // Change color on hover
           metalness={0.5}
           roughness={0.2}
         />
@@ -98,8 +102,9 @@ function Button({ position, text, textSize = 0.5, onClick }: any) {
         {text.toUpperCase()}
         <meshStandardMaterial color="white" />
       </Text3D>
+      <Arrow3D />
     </group>
   );
 }
 
-export default Button;
+export default R3Button;
