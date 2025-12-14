@@ -1,13 +1,9 @@
 
 import { Html } from "@react-three/drei"
 import R3Button from "../../R3Button/R3Button"
-import { useState } from "react"
 import './intro.css'
 import { createPortal } from "react-dom"
-
-
-import "./intro.css"
-import { useR3FPortfolio } from "../Index"
+import { useR3FPortfolio } from "../R3Context"
 const R3FIntro = () => {
     const { activeSection, setActiveSection } = useR3FPortfolio()
     const portalRoot = document.getElementById("portfolio-view")
@@ -22,6 +18,7 @@ const R3FIntro = () => {
 
             <R3Button
                 text="Intro"
+                isStreetLight={true}
                 position={[0, 0.1, 0]}
                 onClick={() => {
 

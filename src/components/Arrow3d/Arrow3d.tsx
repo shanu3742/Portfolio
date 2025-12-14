@@ -1,36 +1,15 @@
 import * as THREE from "three"
 import { Center, Float, Text3D } from "@react-three/drei"
+import { Arrow } from "../Arrow/Arrow";
 const FONT_URL = "font/helvetik.json";
 function Arrow3D({ props }) {
-    const shape = new THREE.Shape()
 
-    shape.moveTo(70, 20)
-    shape.lineTo(130, 20)
-    shape.lineTo(130, 90)
-    shape.lineTo(180, 90)
-    shape.lineTo(100, 180)
-    shape.lineTo(20, 90)
-    shape.lineTo(70, 90)
-    shape.closePath()
 
-    const extrudeSettings = {
-        depth: 20,
-        bevelEnabled: true,
-        bevelThickness: 2,
-        bevelSize: 2,
-        bevelSegments: 3,
-    }
 
     return (
         <>
 
-            <group {...props} rotation={[-Math.PI, 0, 0]} position={[0, 1, 0]}>
-                <mesh scale={0.0025}>
-                    <extrudeGeometry args={[shape, extrudeSettings]} />
-                    <meshStandardMaterial color="#FFD700" />
-                </mesh>
-
-            </group>
+            <Arrow rotation={[-Math.PI, 0, 0]} position={[0, 1, 0]} />
             <group position={[-0.5, 1.1, 0]}>
                 <Float>
                     <Text3D font={FONT_URL}
@@ -48,3 +27,4 @@ function Arrow3D({ props }) {
 }
 
 export default Arrow3D
+

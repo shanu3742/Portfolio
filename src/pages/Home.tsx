@@ -8,25 +8,9 @@ import { Physics } from '@react-three/rapier'
 import SceneEnvironment from '../components/SceneEnvirnoment/SceneEnvirnoment';
 
 const Home: React.FC = () => {
-  const welecomeMessage = `hellow there it's your friend Kumar  a friendly developer next to your door `
 
-  const welecomeSpeech = () => {
-    const speech = new SpeechSynthesisUtterance(welecomeMessage);
-    speech.lang = "en-US";   // set language
-    speech.rate = 1;         // speed
-    speech.pitch = 1;        // tone
 
-    window.speechSynthesis.speak(speech);
-  }
 
-  /**
-   * one time speech
-   */
-  useEffect(() => {
-    setTimeout(() => {
-      welecomeSpeech()
-    }, 5000)
-  }, [])
 
   return (
     <IonPage>

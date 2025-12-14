@@ -1,21 +1,25 @@
-import { Html, RoundedBox, Text3D, useCursor } from "@react-three/drei";
+import { RoundedBox, Text3D, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useRef, useState, useLayoutEffect } from "react";
 import * as THREE from "three";
 import './R3Button.css';
 import Arrow3D from "../Arrow3d/Arrow3d";
+import { RigidBody } from "@react-three/rapier";
+import { StreetLight } from "../StreetLight/StreetLight";
+
 const FONT_URL = "font/helvetik.json";
 // You will need a font file for Text3D.
 // Download a JSON font (like 'helvetiker_regular.typeface.json')
 // and place it in your 'public' folder or similar.
 
-function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
+function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
   const [hitSound] = useState(() => new Audio('./mp3/click.wav'))
   const meshRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHover] = useState(false);
   const [clicked, setClick] = useState(false);
   const [textXOffset, setTextXOffset] = useState(0);
+  const boxRef = useRef<THREE.Mesh>(null!);
   useCursor(hovered)
 
   // Set initial and pressed-down Y position
@@ -31,6 +35,7 @@ function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, t
       // Calculate the total width of the text
       const textWidth = box.max.x - box.min.x;
       // The required offset to center the text is negative half its width
+
       setTextXOffset(-textWidth / 2);
     }
   }, [text, textSize]); // Recalculate if text or size changes
@@ -73,11 +78,22 @@ function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, t
     hitSound.play()
   }
 
+
   return (
     <group ref={meshRef} position={position}>
+      {
+        isStreetLight && (
+          <RigidBody type="fixed" colliders="cuboid">
+            <group position-y={0} position-x={1} position-z={-1.5} scale={2} rotation={[0, -Math.PI / 2, 0]}>
+              <StreetLight />
+            </group>
+          </RigidBody>
+        )
+      }
       {/* 3D Box for the button body (centered at [0, 0, 0] of the group) */}
       <RoundedBox
-        args={[textSize * 6, 0.4, 0.8]} // Width, Height, Depth (Width is proportional to textSize)
+        ref={boxRef}
+        args={[textSize * boxFactor, 0.4, 0.8]} // Width, Height, Depth (Width is proportional to textSize)
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
         onPointerDown={handleClick}
@@ -110,8 +126,10 @@ function R3Button({ position, color = '#007bff', hoverColor = '#00ff00', text, t
         <meshStandardMaterial color="white" />
       </Text3D>
       <Arrow3D />
+
     </group>
   );
 }
 
 export default R3Button;
+

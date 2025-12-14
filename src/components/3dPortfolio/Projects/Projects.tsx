@@ -1,36 +1,31 @@
 
 import { Html } from "@react-three/drei"
 import R3Button from "../../R3Button/R3Button"
-import './Experience.css'
+import './Projects.css'
 import { createPortal } from "react-dom"
 import { useR3FPortfolio } from "../R3Context"
-
-
-const R3FExperience = () => {
+const R3FProjects = () => {
     const { activeSection, setActiveSection } = useR3FPortfolio()
-
-
     const portalRoot = document.getElementById("portfolio-view")
-
 
     return (
         <>
-            {activeSection === 'experience' && portalRoot && (
+            {activeSection === 'projects' && portalRoot && (
                 <Html>
-                    {createPortal(<ExperienceContent />, portalRoot)}
+                    {createPortal(<ProjectsContent />, portalRoot)}
                 </Html>
             )}
 
             <R3Button
-                text="Experience"
-                color="yellow"
-                isStreetLight={true}
-                hoverColor="orange"
+                text="Projects"
+                isStreetLight={false}
                 boxFactor={9}
-                position={[25, 1, 0]}
+                position={[-34, 0, 5]}
+                color="pink"
+                hoverColor="green"
                 onClick={() => {
 
-                    setActiveSection('experience')
+                    setActiveSection('projects')
 
                 }}
             />
@@ -41,11 +36,12 @@ const R3FExperience = () => {
 
 
 
-const ExperienceContent = () => {
-    return <div className="portfolio-Experience-container" >
+const ProjectsContent = () => {
+
+    return <div className="portfolio-intro-container">
         <section className="card">
             <h1>Welcome to My 3D Portfolio</h1> <h3>
-                Experience
+                Projects
             </h3>
             <p>
                 I am a Software Engineer and data visualization specialist with over 3 years of experience building high-performance, interactive financial applications. I specialize in D3.js–driven visualizations and have strong expertise in React, TypeScript, and Angular, with hands-on experience improving frontend performance and scalability.
@@ -57,4 +53,4 @@ const ExperienceContent = () => {
     </div>
 }
 
-export default R3FExperience
+export default R3FProjects

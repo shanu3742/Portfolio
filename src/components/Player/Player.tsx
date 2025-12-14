@@ -77,7 +77,7 @@ const Player = () => {
   // Keep sound logic on collision for impact sounds
   const playerHitGround = (event) => {
     if (event.other.rigidBodyObject?.name === 'ground') {
-      playSound()
+      // playSound()
     }
   }
 
