@@ -4,6 +4,7 @@ import R3Button from "../../R3Button/R3Button"
 import './Experience.css'
 import { createPortal } from "react-dom"
 import { useR3FPortfolio } from "../R3Context"
+import ExperiencePieChart from "../../dataviz/Pie"
 
 
 const R3FExperience = () => {
@@ -42,17 +43,28 @@ const R3FExperience = () => {
 
 
 const ExperienceContent = () => {
+    const data = [
+        { label: "Aarth", value: 1.5 },
+        { label: "StockEdge", value: 3.2 }
+    ];
     return <div className="portfolio-Experience-container" >
         <section className="card">
             <h1>Welcome to My 3D Portfolio</h1> <h3>
                 Experience
             </h3>
-            <p>
-                I am a Software Engineer and data visualization specialist with over 3 years of experience building high-performance, interactive financial applications. I specialize in D3.js–driven visualizations and have strong expertise in React, TypeScript, and Angular, with hands-on experience improving frontend performance and scalability.
-            </p>
-            <p>
-                At StockEdge, I have built complex financial charts, upgraded large-scale Angular applications, and optimized legacy code to significantly reduce load times and improve user insights. I am currently expanding my skill set into Three.js and React Three Fiber to create immersive 3D data visualizations. I am passionate about transforming complex data into clear, intuitive, and visually engaging experiences.
-            </p>
+            <section>
+                <div className="pie-chart-label">
+                    <div className="flex-box">
+                        <span className="label-box" style={{ background: "#00CDA3" }}></span>
+                        <h6 style={{ color: "#00CDA3" }}>Aarth (1.5 yrs)</h6>
+                    </div>
+                    <div className="flex-box">
+                        <span className="label-box" style={{ background: "rgb(42, 69, 122)" }}></span>
+                        <h6 style={{ color: "rgb(42, 69, 122)" }}>StockEdge (3.2 yrs)</h6>
+                    </div>
+                </div>
+                <ExperiencePieChart data={data} color={["#00CDA3", "rgb(42, 69, 122)"]} width={200} height={200} />
+            </section>
         </section>
     </div>
 }
