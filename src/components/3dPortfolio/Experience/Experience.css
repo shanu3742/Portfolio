@@ -1,9 +1,15 @@
-.portfolio-intro-container{
-     background: #0b0f1a;
+.portfolio-Experience-container{
+     background: hsl(224, 41%, 7%);
+     
+     
 }
-.card {
+.experience-card {
   width: 320px;
-  padding: 20px;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding: 4px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -25,7 +31,7 @@
   color: blue;
 }
 
-.card p {
+.card .card-dis {
   margin: 0 0 14px;
   font-size: 0.9rem;
   color: #ffffff;

@@ -38,7 +38,7 @@ const R3FSkill = () => {
 
 const SkillContent = () => {
 
-    return <div className="portfolio-intro-container">
+    return <div className="portfolio-skill-container">
         <section className="card">
             <h1>Welcome to My 3D Portfolio</h1> <h3>
                 Skill
