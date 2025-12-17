@@ -80,54 +80,58 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
 
 
   return (
-    <group ref={meshRef} position={position}>
-      {
-        isStreetLight && (
-          <RigidBody type="fixed" colliders="cuboid">
-            <group position-y={0} position-x={1} position-z={-1.5} scale={2} rotation={[0, -Math.PI / 2, 0]}>
-              <StreetLight />
-            </group>
-          </RigidBody>
-        )
-      }
-      {/* 3D Box for the button body (centered at [0, 0, 0] of the group) */}
-      <RoundedBox
-        ref={boxRef}
-        args={[textSize * boxFactor, 0.4, 0.8]} // Width, Height, Depth (Width is proportional to textSize)
-        onPointerOver={() => setHover(true)}
-        onPointerOut={() => setHover(false)}
-        onPointerDown={handleClick}
-        castShadow
-        receiveShadow
-        radius={0.1} // Radius of the rounded corners
-        smoothness={4} // How many segments to use for the curve (higher = smoother)
-        bevelSegments={4} // Segments for the bevel geometry itself
-      >
-        <meshStandardMaterial
-          color={hovered ? hoverColor : color} // Change color on hover
-          metalness={0.5}
-          roughness={0.2}
-        />
-      </RoundedBox>
+    <>
+      <group position={position}>
+        {
+          isStreetLight && (
+            <RigidBody type="fixed" colliders="cuboid">
+              <group position-y={0} position-x={1} position-z={-1.5} scale={2} rotation={[0, -Math.PI / 2, 0]}>
+                <StreetLight />
+              </group>
+            </RigidBody>
+          )
+        }
+      </group>
+      <group ref={meshRef} position={position}>
+        {/* 3D Box for the button body (centered at [0, 0, 0] of the group) */}
+        <RoundedBox
+          ref={boxRef}
+          args={[textSize * boxFactor, 0.4, 0.8]} // Width, Height, Depth (Width is proportional to textSize)
+          onPointerOver={() => setHover(true)}
+          onPointerOut={() => setHover(false)}
+          onPointerDown={handleClick}
+          castShadow
+          receiveShadow
+          radius={0.1} // Radius of the rounded corners
+          smoothness={4} // How many segments to use for the curve (higher = smoother)
+          bevelSegments={4} // Segments for the bevel geometry itself
+        >
+          <meshStandardMaterial
+            color={hovered ? hoverColor : color} // Change color on hover
+            metalness={0.5}
+            roughness={0.2}
+          />
+        </RoundedBox>
 
-      <Text3D
-        ref={textRef} // <-- 1. Attach the ref
-        font={FONT_URL}
-        size={textSize}
-        height={0.05}
-        curveSegments={12}
-        bevelEnabled
-        bevelThickness={0.01}
-        bevelSize={0.01} // <-- 2. Use the calculated offset for the X position, centered, and Z-positioned on the box
-        position={[textXOffset, 0.25, 0.4]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        {text.toUpperCase()}
-        <meshStandardMaterial color="white" />
-      </Text3D>
-      <Arrow3D />
+        <Text3D
+          ref={textRef} // <-- 1. Attach the ref
+          font={FONT_URL}
+          size={textSize}
+          height={0.05}
+          curveSegments={12}
+          bevelEnabled
+          bevelThickness={0.01}
+          bevelSize={0.01} // <-- 2. Use the calculated offset for the X position, centered, and Z-positioned on the box
+          position={[textXOffset, 0.25, 0.4]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          {text.toUpperCase()}
+          <meshStandardMaterial color="white" />
+        </Text3D>
+        <Arrow3D />
 
-    </group>
+      </group>
+    </>
   );
 }
 

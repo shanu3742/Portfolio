@@ -5,11 +5,8 @@ import './Experience.css'
 import { createPortal } from "react-dom"
 import { useR3FPortfolio } from "../R3Context"
 import ExperiencePieChart from "../../dataviz/Pie"
-import { motion } from "framer-motion";
-import { TrendingUp, Zap, ShieldCheck, Paintbrush } from "lucide-react";
-import { Card, CardContent } from "../../Card/Card"
-import { Badge } from "../../Badge/Badge"
 import { useState } from "react"
+import SideBarLayout from "../layout"
 
 const R3FExperience = () => {
     const { activeSection, setActiveSection } = useR3FPortfolio()
@@ -22,7 +19,7 @@ const R3FExperience = () => {
         <>
             {activeSection === 'experience' && portalRoot && (
                 <Html>
-                    {createPortal(<ExperienceContent />, portalRoot)}
+                    {createPortal(<ExperienceContent setActiveSection={setActiveSection} />, portalRoot)}
                 </Html>
             )}
 
@@ -46,11 +43,12 @@ const R3FExperience = () => {
 
 
 
-const ExperienceContent = () => {
+const ExperienceContent = ({ setActiveSection }) => {
     const data = [
         {
             label: "Aarth",
             value: 1.5,
+            color: "#00CDA3",
             details: [
                 {
                     "company": "Aarth Software (Aarth.io)",
@@ -113,6 +111,7 @@ const ExperienceContent = () => {
         {
             label: "StockEdge",
             value: 3.2,
+            color: "rgb(42, 69, 122)",
             details: [
                 {
                     "company": "StockEdge",
@@ -184,30 +183,25 @@ const ExperienceContent = () => {
         console.log('click', data)
         setSelectedExperience(data.details[0]);
     }
-    return <div className="portfolio-Experience-container" >
-        <section className="experience-card">
-            <h1>Welcome to My 3D Portfolio</h1> <h3>
-                Experience
-            </h3>
-            <section>
-                <div className="pie-chart-label">
-                    <div className="flex-box" onClick={() => setSelectedExperience(data[0].details[0])} style={{ cursor: 'pointer' }} >
-                        <span className="label-box" style={{ background: "#00CDA3", border: `${selectedExperience.label === 'Aarth' ? 2 : 0}px solid black` }} ></span>
-                        <h6 style={{ color: "#00CDA3" }}>Aarth (1.5 yrs)</h6>
-                    </div>
-
-                    <div className="flex-box" onClick={() => setSelectedExperience(data[1].details[0])} style={{ cursor: 'pointer' }} >
-                        <span className="label-box" style={{ background: "rgb(42, 69, 122)", border: `${selectedExperience.label === 'StockEdge' ? 2 : 0}px solid black` }}></span>
-                        <h6 style={{ color: "rgb(42, 69, 122)" }}>StockEdge (3.2 yrs)</h6>
-                    </div>
-                </div>
-                <ExperiencePieChart data={data} color={["#00CDA3", "rgb(42, 69, 122)"]} width={200} height={200} onClick={onArcClick} selectedExperience={selectedExperience} />
-            </section>
-            <section>
-                <ExperienceDetailsPanel data={selectedExperience} />
-            </section>
+    return <SideBarLayout header="Experience" setActiveSection={setActiveSection}>
+        <section>
+            <div className="pie-chart-label">
+                {
+                    data.map((exp) => {
+                        return <div key={exp.label} className="flex-box" onClick={() => setSelectedExperience(exp.details[0])} style={{ cursor: 'pointer' }} >
+                            <span className="label-box" style={{ background: exp.color, border: `${selectedExperience.label === exp.label ? 2 : 0}px solid black` }} ></span>
+                            <h6 style={{ color: exp.color }}>{exp.label} ({exp.value} yrs)</h6>
+                        </div>
+                    })
+                }
+            </div>
+            <ExperiencePieChart data={data} color={data.map(exp => exp.color)} width={200} height={200} onClick={onArcClick} selectedExperience={selectedExperience} />
         </section>
-    </div>
+        <section>
+            <ExperienceDetailsPanel data={selectedExperience} />
+        </section>
+    </SideBarLayout >
+
 }
 
 

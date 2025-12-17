@@ -1,7 +1,5 @@
-.portfolio-Experience-container{
+.sidebar-container{
      background: hsl(224, 41%, 7%);
-     
-     
 }
 .close-btn {
   position: fixed;
@@ -37,7 +35,7 @@
   transform: scale(0.95);
 }
 
-.experience-card {
+.sidebar-card {
   width: 320px;
   height: 100vh;
   max-height: 100vh;
@@ -53,42 +51,17 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.sidebar-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.card h3 {
+.sidebar-card .sidebar-header{
   margin: 0 0 8px;
   font-size: 1.1rem;
   font-weight: 600;
   color: blue;
 }
 
-.card .card-dis {
-  margin: 0 0 14px;
-  font-size: 0.9rem;
-  color: #ffffff;
-  line-height: 1.5;
-}
 
-.tag {
-  display: inline-block;
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  border-radius: 999px;
-  background: rgba(79, 124, 255, 0.15);
-  color: #4f7cff;
-}
-.flex-box{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.label-box{
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
-  background-color: yellow;
-}
+
