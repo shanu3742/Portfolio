@@ -4,7 +4,7 @@ import R3Button from "../../R3Button/R3Button"
 import './Experience.css'
 import { createPortal } from "react-dom"
 import { useR3FPortfolio } from "../R3Context"
-import ExperiencePieChart from "../../dataviz/Pie"
+import ExperiencePieChart from "../../dataviz/Pie/Pie"
 import { useCallback, useState } from "react"
 import SideBarLayout from "../layout"
 
@@ -207,7 +207,7 @@ const ExperienceContent = ({ setActiveSection }) => {
 }
 
 
-const SectionTitle = ({ title, className = '' }) => (
+export const SectionTitle = ({ title, className = '' }) => (
     <h2 className={`text-xl font-bold text-teal-400 mb-4 border-b-2 border-teal-600/50 pb-2 ${className}`}>
         {title}
     </h2>
