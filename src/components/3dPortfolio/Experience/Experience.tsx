@@ -5,7 +5,7 @@ import './Experience.css'
 import { createPortal } from "react-dom"
 import { useR3FPortfolio } from "../R3Context"
 import ExperiencePieChart from "../../dataviz/Pie"
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import SideBarLayout from "../layout"
 
 const R3FExperience = () => {
@@ -55,6 +55,7 @@ const ExperienceContent = ({ setActiveSection }) => {
                     "label": "Aarth",
                     "role": "Frontend / Full-Stack Developer",
                     "experience": "1.5 Years",
+                    "experienceValue": "1.5",
                     "techStack": [
                         "React.js",
                         "Material UI",
@@ -116,6 +117,8 @@ const ExperienceContent = ({ setActiveSection }) => {
                 {
                     "company": "StockEdge",
                     "label": "StockEdge",
+                    "experience": "3.4 Years",
+                    "experienceValue": "3.2",
                     "role": "Data Visualization Engineer (Frontend)",
                     "techStack": [
                         "Angular",
@@ -179,10 +182,9 @@ const ExperienceContent = ({ setActiveSection }) => {
         }
     ];
     const [selectedExperience, setSelectedExperience] = useState(data[1].details[0]);
-    const onArcClick = (data) => {
-        console.log('click', data)
+    const onArcClick = useCallback((data) => {
         setSelectedExperience(data.details[0]);
-    }
+    }, []);
     return <SideBarLayout header="Experience" setActiveSection={setActiveSection}>
         <section>
             <div className="pie-chart-label">

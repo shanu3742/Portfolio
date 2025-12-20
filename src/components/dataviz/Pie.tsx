@@ -1,80 +1,137 @@
-import React from "react";
+import { useCallback, useMemo } from "react";
 import * as d3 from "d3";
 
-const ExperiencePieChart = ({ data, color, width, height, onClick, selectedExperience }) => {
-    const radius = Math.min(width, height) / 2;
-    const colors = d3.scaleOrdinal()
-        .domain(data.map(d => d.label))
-        .range(color);
+const INNER_RADIUS = 60;
+const STROKE_COLOR = "black";
+const STROKE_WIDTH = 2;
 
-    // Create pie generator
-    const pie = d3.pie()
-        .value(d => d.value)
-        .sort(null);
+interface MajorContribution {
+    title: string;
+    description: string;
+}
 
-    // Create arc generator
-    const arc = d3.arc()
-        .innerRadius(60)   // donut chart
-        .outerRadius(radius - 10);
+interface DetailItem {
+    company: string;
+    label: string;
+    role: string;
+    techStack: string[];
+    responsibilities: string[];
+    majorContributions: MajorContribution[];
+    impact: string[];
+    experienceValue: string; // new field for numeric experience value
+    experience: string; // optional (exists only in some cases)
+}
 
-    // Label arc (not used in the slice path, but kept for completeness if needed)
-    // const labelArc = d3.arc()
-    //     .innerRadius(radius - 40)
-    //     .outerRadius(radius - 40);
+interface ExperienceDataItem {
+    label: string;
+    value: number;
+    color: string;
+    details: DetailItem[];
+}
 
-    const arcs = pie(data);
+type ExperienceData = ExperienceDataItem[];
 
-    const onPathClick = (lable) => {
-        if (onClick) {
-            onClick(lable.data)
-        }
-    }
 
-    // Define the stroke properties for the selected slice
-    const selectedStrokeColor = 'black'; // Choose your desired stroke color
-    const selectedStrokeWidth = '2px';   // Choose your desired stroke width
+const ExperiencePieChart = ({
+    data,
+    color,
+    width,
+    height,
+    onClick,
+    selectedExperience,
+}: { data: ExperienceData, color: Array<string>, width: number, height: number, onClick: (data: ExperienceDataItem) => void, selectedExperience: ExperienceDataItem }) => {
+    /* ---------- Derived values ---------- */
+    const radius = useMemo(
+        () => Math.min(width, height) / 2,
+        [width, height]
+    );
+    const totalExperience = useMemo(() => {
+        return data.reduce((sum, item) => sum + item.value, 0);
+    }, [data])
+    /* ---------- Color scale ---------- */
+    const colorScale = useMemo(
+        () =>
+            d3
+                .scaleOrdinal()
+                .domain(data.map(d => d.label))
+                .range(color),
+        [data, color]
+    );
+
+    /* ---------- Pie generator ---------- */
+    const pieGenerator = useMemo(
+        () =>
+            d3
+                .pie()
+                .value((d: d3.PieArcDatum<ExperienceDataItem>) => d.value)
+                .sort(null),
+        []
+    );
+
+    /* ---------- Arc generator ---------- */
+    const arcGenerator = useMemo(
+        () =>
+            d3
+                .arc()
+                .innerRadius(INNER_RADIUS)
+                .outerRadius(radius - 10),
+        [radius]
+    );
+
+    /* ---------- Computed arcs ---------- */
+    const arcs = useMemo(
+        () => pieGenerator(data),
+        [data, pieGenerator]
+    );
+
+    /* ---------- Click handler ---------- */
+    const handleSliceClick = useCallback(
+        (arcData: d3.PieArcDatum<ExperienceDataItem>) => {
+            onClick?.(arcData.data);
+        },
+        [onClick]
+    );
 
     return (
         <svg width={width} height={height}>
             <g transform={`translate(${width / 2}, ${height / 2})`}>
-                {arcs.map((d, i) => {
-                    const isSelected = selectedExperience && selectedExperience.label === d.data.label;
+                {arcs.map((d: d3.PieArcDatum<ExperienceDataItem>) => {
+                    const isSelected =
+                        selectedExperience?.label === d.data.label;
+
                     return (
-                        <g key={i} onClick={() => onPathClick(d)}>
-                            {/* Slice */}
-                            <path
-                                d={arc(d)}
-                                // Apply stroke if selected, otherwise 'none'
-                                stroke={isSelected ? selectedStrokeColor : 'none'}
-                                // Apply stroke width if selected, otherwise '0'
-                                strokeWidth={isSelected ? selectedStrokeWidth : '0'}
-                                fill={colors(d.data.label)}
-                                style={{ cursor: 'pointer' }}
-                            />
-                        </g>
+                        <path
+                            key={d.data.label}
+                            d={arcGenerator(d)}
+                            fill={colorScale(d.data.label)}
+                            stroke={isSelected ? STROKE_COLOR : "none"}
+                            strokeWidth={isSelected ? STROKE_WIDTH : 0}
+                            onClick={() => handleSliceClick(d)}
+                            style={{ cursor: "pointer" }}
+                        />
                     );
                 })}
 
                 {/* Center text */}
                 <text
                     textAnchor="middle"
-                    alignmentBaseline="middle"
-                    fontSize="14"
-                    fontWeight="600"
+                    dominantBaseline="middle"
+                    fontSize={14}
+                    fontWeight={600}
                 >
                     Total
                 </text>
                 <text
-                    y="18"
+                    y={18}
                     textAnchor="middle"
-                    alignmentBaseline="middle"
-                    fontSize="16"
-                    fontWeight="700"
+                    dominantBaseline="middle"
+                    fontSize={16}
+                    fontWeight={700}
                 >
-                    4.7 yrs
+                    {totalExperience} yrs
                 </text>
             </g>
-        </svg >
+        </svg>
     );
 };
 
