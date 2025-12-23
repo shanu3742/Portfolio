@@ -6,6 +6,8 @@ import Experience from '../Experience';
 import { Suspense, useEffect } from 'react';
 import { Physics } from '@react-three/rapier'
 import SceneEnvironment from '../components/SceneEnvirnoment/SceneEnvirnoment';
+import StatusBar from '../components/StatusBar/StatusBar';
+import { createPortal } from 'react-dom';
 
 const Home: React.FC = () => {
 
@@ -51,6 +53,11 @@ const Home: React.FC = () => {
 
 
         </Canvas>
+        {
+          createPortal(<div className='status-bar-container'>
+            <StatusBar />
+          </div>, document.body)
+        }
       </IonContent>
     </IonPage>
   );
