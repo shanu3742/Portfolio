@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
 import { RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
-import { useKeyboardControls } from '@react-three/drei'
+import { Html, useKeyboardControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { createPortal } from 'react-dom'
+import Controller from './PlayerController/PlayerController'
 
 const SPEED = 6
 const JUMP_FORCE = 6
@@ -13,6 +15,7 @@ const Player = () => {
   const { rapier, world } = useRapier()
 
   const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
+  const movement = useRef({forward:false,backward:false,leftward:false,rightward:false})
   const [, getKeys] = useKeyboardControls()
   const body = useRef<RapierRigidBody | null>(null)
   const manRef = useRef(null)
@@ -25,7 +28,11 @@ const Player = () => {
   useFrame((state) => {
     if (!body.current) return
 
-    const { forward, backward, leftward, rightward } = getKeys()
+    const { forwardK, backwardk, leftwardk, rightwardk } = getKeys()
+    const forward  = forwardK || movement.current.forward;
+    const backward  = backwardk || movement.current.backward;
+    const leftward  = leftwardk || movement.current.leftward;
+    const rightward  = rightwardk || movement.current.rightward;
     const velocity = body.current.linvel()
     const translation = body.current.translation()
 
@@ -86,9 +93,13 @@ const Player = () => {
     hitSound.volume = Math.random()
     hitSound.play()
   }
+  const handleMovement =(direction,active) =>{
+    movement.current[direction] = active;
+  }
 
   return (
-    <RigidBody
+    <>
+  <RigidBody
       ref={body}
       colliders={'hull'}
       position={[1, 1, 1.2]}
@@ -100,6 +111,11 @@ const Player = () => {
     >
       <Man scale={0.25} ref={manRef} />
     </RigidBody>
+<Html>
+     {createPortal(<Controller onMove={handleMovement} />, document.body)}
+     </Html>
+    </>
+  
   )
 }
 
