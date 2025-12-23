@@ -5,7 +5,7 @@ import Ground from "../components/Ground/Ground";
 import Player from "../components/Player/Player";
 import Village from "../components/Village/Village";
 import Boundries from "../components/Boundries/Boundries";
-import Button from "../components/Button/Button";
+import R3FPortfolio from "../components/3dPortfolio/Index";
 
 
 
@@ -25,7 +25,7 @@ const Experience = () => {
     </Suspense>
     <BilBoard />
     <Ground />
-    <Button text={'Intro'} position={[0,0.1,0]} onClick={() => console.log('shnau')} />
+    <R3FPortfolio />
     <Boundries />
 
   </>;
