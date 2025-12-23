@@ -1,58 +1,57 @@
 // Controller.jsx
-import React from 'react'
+import { IonIcon } from '@ionic/react'
+import { caretBackOutline, caretDownOutline, caretForwardOutline, caretUpOutline } from 'ionicons/icons'
+import './playerController.css'
 
 const Controller = ({ onMove }) => {
   const handleAction = (direction, active) => {
     onMove(direction, active)
   }
 
-  // Styles for the button container
-  const containerStyle = {
-    position: 'absolute',
-    bottom: '40px',
-    right: '40px',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 50px)',
-    gap: '10px',
-    zIndex: 1000,
-  }
-
-  const btnStyle = {
-    width: '50px',
-    height: '50px',
-    userSelect: 'none',
-    touchAction: 'none',
-    background: 'rgba(255, 255, 255, 0.2)',
-    border: '1px solid white',
-    color: 'white',
-    borderRadius: '8px'
-  }
+ 
 
   return (
-    <div style={containerStyle}>
+    <div className='btn-controller-container'>
       <div />
       <button 
-        style={btnStyle}
+        className='btn'
         onPointerDown={() => handleAction('forward', true)} 
         onPointerUp={() => handleAction('forward', false)}
-      >W</button>
+      >
+            <IonIcon icon={caretUpOutline} />
+      </button>
       <div />
       
       <button 
-        style={btnStyle}
+        className='btn'
         onPointerDown={() => handleAction('leftward', true)} 
         onPointerUp={() => handleAction('leftward', false)}
-      >A</button>
+      >
+         <IonIcon icon={caretBackOutline} />
+      </button>
       <button 
-        style={btnStyle}
-        onPointerDown={() => handleAction('backward', true)} 
-        onPointerUp={() => handleAction('backward', false)}
-      >S</button>
+        className='btn'
+        style={{borderRadius:'50%'}}
+      
+      >
+        
+      </button>
       <button 
-        style={btnStyle}
+        className='btn'
         onPointerDown={() => handleAction('rightward', true)} 
         onPointerUp={() => handleAction('rightward', false)}
-      >D</button>
+      >
+         <IonIcon icon={caretForwardOutline} />
+      </button>
+      <div />
+      <button 
+        className='btn'
+        onPointerDown={() => handleAction('backward', true)} 
+        onPointerUp={() => handleAction('backward', false)}
+      >
+         <IonIcon icon={caretDownOutline} />
+      </button>
+      <div />
     </div>
   )
 }
