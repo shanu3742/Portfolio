@@ -28,7 +28,7 @@ const Player = () => {
   useFrame((state) => {
     if (!body.current) return
 
-    const { forwardK, backwardk, leftwardk, rightwardk } = getKeys()
+    const { forward:forwardK, backward:backwardk, leftward:leftwardk, rightward:rightwardk } = getKeys()
     const forward  = forwardK || movement.current.forward;
     const backward  = backwardk || movement.current.backward;
     const leftward  = leftwardk || movement.current.leftward;
