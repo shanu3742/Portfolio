@@ -37,7 +37,8 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "tailwindcss": "^4.1.17",
-    "three": "^0.177.0"
+    "three": "^0.177.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@capacitor/cli": "7.3.0",
