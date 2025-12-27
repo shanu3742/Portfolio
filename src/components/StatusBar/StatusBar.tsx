@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import APP_CONFIG from "../../app.config/config";
 
 const STATUS_API =
-  "https://portfolio-server-wch9.onrender.com/portfolio/api/v1/status";
+  `${APP_CONFIG.server_url}/portfolio/api/v1/status`;
 
 const STATUS_CONFIG = {
   Active: {

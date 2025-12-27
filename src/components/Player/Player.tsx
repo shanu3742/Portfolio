@@ -15,10 +15,11 @@ const Player = () => {
   const { rapier, world } = useRapier()
 
   const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
-  const movement = useRef({forward:false,backward:false,leftward:false,rightward:false})
+  const movement = useRef({ forward: false, backward: false, leftward: false, rightward: false })
   const [, getKeys] = useKeyboardControls()
   const body = useRef<RapierRigidBody | null>(null)
-  const manRef = useRef(null)
+  const manRef = useRef(null);
+  const controllerRef = useRef(null);
 
   const direction = new THREE.Vector3()
   const frontVector = new THREE.Vector3()
@@ -28,13 +29,50 @@ const Player = () => {
   useFrame((state) => {
     if (!body.current) return
 
-    const { forward:forwardK, backward:backwardk, leftward:leftwardk, rightward:rightwardk } = getKeys()
-    const forward  = forwardK || movement.current.forward;
-    const backward  = backwardk || movement.current.backward;
-    const leftward  = leftwardk || movement.current.leftward;
-    const rightward  = rightwardk || movement.current.rightward;
+    const { forward: forwardK, backward: backwardk, leftward: leftwardk, rightward: rightwardk } = getKeys()
+    const forward = forwardK || movement.current.forward;
+    const backward = backwardk || movement.current.backward;
+    const leftward = leftwardk || movement.current.leftward;
+    const rightward = rightwardk || movement.current.rightward;
     const velocity = body.current.linvel()
     const translation = body.current.translation()
+    // FORWARD
+    if (forward && controllerRef?.current) {
+      controllerRef.current.onForwardPressed();
+    } else {
+      if (controllerRef?.current) {
+        controllerRef.current.onForwardReleased();
+      }
+    }
+
+    // BACKWARD
+    if (backward && controllerRef?.current) {
+      controllerRef.current.onBackwardPressed();
+    } else {
+      if (controllerRef?.current) {
+        controllerRef.current.onBackwardReleased();
+      }
+    }
+
+
+    // LEFT
+    if (leftward && controllerRef?.current) {
+      controllerRef.current.onLeftwardPressed();
+    } else {
+      if (controllerRef?.current) {
+        controllerRef.current.onLeftwardReleased();
+      }
+    }
+
+
+    // RIGHT
+    if (rightward && controllerRef?.current) {
+      controllerRef.current.onRightwardPressed();
+    } else {
+      if (controllerRef?.current) {
+        controllerRef.current.onRightwardReleased();
+      }
+    }
 
     // --- MOVEMENT ---
     frontVector.set(0, 0, backward - forward)
@@ -93,29 +131,29 @@ const Player = () => {
     hitSound.volume = Math.random()
     hitSound.play()
   }
-  const handleMovement =(direction,active) =>{
+  const handleMovement = (direction, active) => {
     movement.current[direction] = active;
   }
 
   return (
     <>
-  <RigidBody
-      ref={body}
-      colliders={'hull'}
-      position={[1, 1, 1.2]}
-      restitution={0}
-      friction={1}
-      mass={1}
-      lockRotations
-      onCollisionEnter={playerHitGround}
-    >
-      <Man scale={0.25} ref={manRef} />
-    </RigidBody>
-<Html>
-     {createPortal(<Controller onMove={handleMovement} />, document.body)}
-     </Html>
+      <RigidBody
+        ref={body}
+        colliders={'hull'}
+        position={[1, 1, 1.2]}
+        restitution={0}
+        friction={1}
+        mass={1}
+        lockRotations
+        onCollisionEnter={playerHitGround}
+      >
+        <Man scale={0.25} ref={manRef} />
+      </RigidBody>
+      <Html>
+        {createPortal(<Controller onMove={handleMovement} ref={controllerRef} />, document.body)}
+      </Html>
     </>
-  
+
   )
 }
 

@@ -47,10 +47,10 @@ export enum Controls {
 
 const App: React.FC = () => {
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(() => [
-    { name: Controls.forWard, keys: ['ArrowUp', 'KeyW'] },
-    { name: Controls.backWard, keys: ['ArrowDown', 'KeyS'] },
-    { name: Controls.leftWard, keys: ['ArrowLeft', 'KeyA'] },
-    { name: Controls.rightWard, keys: ['ArrowRight', 'KeyD'] },
+    { name: Controls.forWard, keys: ['ArrowUp'] },
+    { name: Controls.backWard, keys: ['ArrowDown'] },
+    { name: Controls.leftWard, keys: ['ArrowLeft'] },
+    { name: Controls.rightWard, keys: ['ArrowRight'] },
     // { name: Controls.jump, keys: ['Space'] },
   ], [])
   return (

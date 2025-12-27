@@ -1,5 +1,6 @@
 "use server"
 
+import APP_CONFIG from "../app.config/config";
 import { FeedbackSchema } from "../schema/feedback";
 
 export async function userFeedback(prevState: any, formData: FormData) {
@@ -19,7 +20,7 @@ export async function userFeedback(prevState: any, formData: FormData) {
 
   try {
     console.log("Processing valid data:", result.data);
-    const response = await fetch("https://portfolio-server-wch9.onrender.com/portfolio/api/v1/feedback", {
+    const response = await fetch(`${APP_CONFIG.server_url}/portfolio/api/v1/feedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
