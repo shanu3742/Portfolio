@@ -6,6 +6,7 @@ import Player from "../components/Player/Player";
 import Village from "../components/Village/Village";
 import Boundries from "../components/Boundries/Boundries";
 import R3FPortfolio from "../components/3dPortfolio/Index";
+import NavigationPath from "../components/NavigationPath/NavigationPath";
 
 
 
@@ -25,6 +26,7 @@ const Experience = () => {
     </Suspense>
     <BilBoard />
     <Ground />
+    <NavigationPath />
     <R3FPortfolio />
     <Boundries />
 

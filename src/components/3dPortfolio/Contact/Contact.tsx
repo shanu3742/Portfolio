@@ -23,8 +23,8 @@ const R3FContact = () => {
                 isStreetLight={false}
                 position={[-40, 0.8, -2]}
                 boxFactor={8}
-                color="pink"
-                hoverColor="green"
+                color="#C98A8A"
+                hoverColor="#E3A3A3"
                 onClick={() => {
 
                     setActiveSection('contact')

@@ -8,7 +8,6 @@ import { createPortal } from 'react-dom'
 import Controller from './PlayerController/PlayerController'
 
 const SPEED = 6
-const JUMP_FORCE = 6
 
 const Player = () => {
   // 1. Get access to the Rapier world and instance

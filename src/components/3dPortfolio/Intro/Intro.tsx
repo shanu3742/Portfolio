@@ -23,6 +23,8 @@ const R3FIntro = () => {
                 text="Intro"
                 isStreetLight={true}
                 position={[0, 0.1, 0]}
+                color="#4F86C6"
+                hoverColor="#6FA1D8"
                 onClick={() => {
 
                     setActiveSection('intro')

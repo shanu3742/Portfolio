@@ -21,8 +21,8 @@ const R3FProjects = () => {
                 isStreetLight={false}
                 boxFactor={9}
                 position={[-34, 0, 5]}
-                color="pink"
-                hoverColor="green"
+                color="#8FAFB8"
+                hoverColor="#A8C6CF"
                 onClick={() => {
 
                     setActiveSection('projects')

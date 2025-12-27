@@ -108,8 +108,8 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
         >
           <meshStandardMaterial
             color={hovered ? hoverColor : color} // Change color on hover
-            metalness={0.5}
-            roughness={0.2}
+            metalness={0}
+            roughness={0.6}
           />
         </RoundedBox>
 

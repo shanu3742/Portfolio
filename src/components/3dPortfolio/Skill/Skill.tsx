@@ -161,9 +161,9 @@ const R3FSkill = () => {
             <R3Button
                 text="Skills"
                 isStreetLight={false}
-                position={[12, 0.1, -6]}
-                color="pink"
-                hoverColor="green"
+                position={[12, 0.2, -6]}
+                color="#8FBF9F"
+                hoverColor="#A7D4B5"
                 onClick={() => {
 
                     setActiveSection('skill')

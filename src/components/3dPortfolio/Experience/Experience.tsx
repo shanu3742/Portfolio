@@ -25,9 +25,9 @@ const R3FExperience = () => {
 
             <R3Button
                 text="Experience"
-                color="yellow"
+                color="#D4B24C"
                 isStreetLight={true}
-                hoverColor="orange"
+                hoverColor="#E6C86E"
                 boxFactor={9}
                 position={[25, 1, 0]}
                 onClick={() => {
