@@ -104,6 +104,8 @@ const ProjectSection = () => {
             "description": "An end-to-end e-commerce solution for fresh produce. Features include real-time inventory tracking, secure payment gateways, and a smooth mobile-responsive ordering flow.",
             "images": [
                 "/portfolio/project/fresh-pic/home.jpg",
+                "/portfolio/project/fresh-pic/product.jpg",
+                "/portfolio/project/fresh-pic/product-details.jpg",
                 "/portfolio/project/fresh-pic/profile.jpg",
             ],
             "tags": ["React Native", "Firebase", "Stripe API"],

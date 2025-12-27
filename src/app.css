@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 .error-alert .alert-wrapper {
   background: rgba(30, 0, 0, 0.75); /* semi-transparent dark red */
   backdrop-filter: blur(8px);
