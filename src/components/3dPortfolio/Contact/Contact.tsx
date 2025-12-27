@@ -39,7 +39,7 @@ const R3FContact = () => {
 
 
 const ContactContent = ({ setActiveSection }) => {
-    return <SideBarLayout header="Skills" setActiveSection={setActiveSection}>
+    return <SideBarLayout header="Contacts" setActiveSection={setActiveSection}>
         <Feedback />
     </SideBarLayout>
 }

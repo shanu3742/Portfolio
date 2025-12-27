@@ -143,6 +143,7 @@ const Player = () => {
         restitution={0}
         friction={1}
         mass={1}
+        name='man'
         lockRotations
         onCollisionEnter={playerHitGround}
       >
