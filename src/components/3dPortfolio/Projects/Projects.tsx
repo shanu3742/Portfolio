@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { useState } from "react";
 const R3FProjects = () => {
     const { activeSection, setActiveSection } = useR3FPortfolio()
     const portalRoot = document.getElementById("portfolio-view")
@@ -76,11 +77,10 @@ const ProjectSection = () => {
                 "/portfolio/project/stockedge/futureoi.png",
                 "/portfolio/project/stockedge/calender.png",
             ],
-            "tags": ["Angular", "d3.js", "Ionic", "Financial Tech"],
+            "tags": ["Angular", "d3.js", "Ionic", "Capacitor", "Financial Tech", "TypeScript", "JavaScript", "CSS", "SCSS", "HTML5"],
             "sceneId": "scene_stockedge",
             "links": {
                 "live": "https://web.stockedge.com",
-                "caseStudy": "/case-study/stockedge"
             }
         },
         {
@@ -91,10 +91,10 @@ const ProjectSection = () => {
             "images": [
                 "/portfolio/project/curry-company/home.png",
             ],
-            "tags": ["Next.js", "Node.js", "React", "Tailwind"],
+            "tags": ["Next.js", "Node.js", "d3.js", "HTML5", "React", "Tailwind", "Material UI", "d3-force", "CSS", "SCSS", "JavaScript", "TypeScript"],
             "sceneId": "scene_aarth",
             "links": {
-                "live": "https://aarth.io"
+                "live": "https://curry-company.eccenca.com/home"
             }
         },
         {
@@ -103,16 +103,14 @@ const ProjectSection = () => {
             "role": "Lead Developer",
             "description": "An end-to-end e-commerce solution for fresh produce. Features include real-time inventory tracking, secure payment gateways, and a smooth mobile-responsive ordering flow.",
             "images": [
-                "/portfolio/project/fresh-pic/home.jpg",
-                "/portfolio/project/fresh-pic/product.jpg",
+                "/portfolio/project/fresh-pic/home.png",
+                "/portfolio/project/fresh-pic/product.png",
                 "/portfolio/project/fresh-pic/product-details.jpg",
                 "/portfolio/project/fresh-pic/profile.jpg",
             ],
-            "tags": ["React Native", "Firebase", "Stripe API"],
+            "tags": ["Angular", "Ionic", "Tailwind", "TypeScript", "JavaScript", "CSS", "SCSS", "HTML5"],
             "sceneId": "scene_freshpick",
-            "links": {
-                "github": "https://github.com/yourusername/fresh-pick"
-            }
+            "links": {}
         },
         {
             "id": "sparql-builder",
@@ -120,23 +118,41 @@ const ProjectSection = () => {
             "role": "Software Engineer",
             "description": "A specialized tool designed to simplify complex semantic web queries. Built a visual interface that generates SPARQL syntax dynamically, making RDF databases accessible to non-experts.",
             "images": [
-                "/portfolio/shanu.png",
-                "/portfolio/shanu.png"
+                "/portfolio/project/querryeditor/editor.png",
             ],
-            "tags": ["TypeScript", "Graph Theory", "Semantic Web", "RDF"],
+            "tags": ["TypeScript", "JavaScript", "React", "CSS", "SCSS", "HTML5"],
             "sceneId": "scene_sparql",
-            "links": {
-                "demo": "https://sparql-builder-demo.com"
-            }
+            "links": {}
         }
     ]
+    const [selectedImage, setSelectedImage] = useState('');
+    const [projectIndex, setProjectIndex] = useState(null);
 
+    const onImageviewOpen = (img, pIdx) => {
+        if (window.innerWidth < 768) return;
+        setSelectedImage(img);
+        setProjectIndex(pIdx);
+    };
+
+    const onImageviewClose = () => {
+        setSelectedImage('');
+        setProjectIndex(null);
+    };
+
+    const slideUpdate = (swiper, cprojectIndex) => {
+        // ONLY update the global preview if the project being swiped 
+        // is the one currently being hovered by the user
+        if (projectIndex === cprojectIndex) {
+            const newImage = projects[cprojectIndex].images[swiper.activeIndex];
+            setSelectedImage(newImage);
+        }
+    };
 
 
     return (
         <section className="p-1 bg-transparent text-white">
             <div className="flex flex-col gap-8">
-                {projects.map((project) => (
+                {projects.map((project, pIndex) => (
                     <motion.div
                         key={project.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -145,7 +161,7 @@ const ProjectSection = () => {
                         className="relative overflow-hidden bg-gradient-to-b from-[#1a2c2c] to-[#0f1717] border border-white/10 rounded-2xl shadow-2xl flex flex-col"
                     >
                         {/* 1. Image Slider at the TOP */}
-                        <div className="w-full h-56 md:h-72 relative border-b border-white/10">
+                        <div className="w-full h-56  relative border-b border-white/10">
                             <Swiper
                                 modules={[Pagination, Navigation, Autoplay]}
                                 spaceBetween={0}
@@ -154,13 +170,16 @@ const ProjectSection = () => {
                                 pagination={{ clickable: true }}
                                 autoplay={{ delay: 4000 }}
                                 className="w-full h-full"
+                                onSlideChange={(swiper) => slideUpdate(swiper, pIndex)}
                             >
                                 {project.images?.map((img, index) => (
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide key={index} >
                                         <img
                                             src={img}
                                             alt={project.title}
-                                            className="w-full h-full object-cover"
+                                            className="w-[350px] h-56 object-cover"
+                                            onMouseEnter={() => onImageviewOpen(img, pIndex)}
+                                            onMouseLeave={onImageviewClose}
                                         />
                                     </SwiperSlide>
                                 ))}
@@ -197,9 +216,22 @@ const ProjectSection = () => {
                     </motion.div>
                 ))}
             </div>
+            <>
+                {
+                    selectedImage && createPortal(<ImageModel image={selectedImage} />, document.body)
+
+                }
+            </>
         </section>
     );
 };
 
-
+const ImageModel = ({ image }) => {
+    return <div className="fixed inset-0 z-50 flex items-center justify-end 
+                        bg-black/50 backdrop-blur-sm">
+        <div className="w-3/4 h-3/4">
+            <img src={image} alt="Project Image" className="w-full h-full object-contain rounded-xl" />
+        </div>
+    </div>
+}
 export default R3FProjects

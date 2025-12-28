@@ -29,7 +29,7 @@ const Home: React.FC = () => {
 
           <directionalLight position={[5, 5, 5]} intensity={1} />
 
-          <OrbitControls />
+          {/* <OrbitControls /> */}
           <Suspense fallback={null}>
             <SceneEnvironment />
           </Suspense>
