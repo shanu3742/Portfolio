@@ -4,9 +4,10 @@ import PortfolioLayout from './PortfolioLayout'
 const Skills = () => {
     return (
         <PortfolioLayout>
-            <section id="skills" className="bg-gray-900 px-6 py-16 md:py-24 rounded-xl shadow-lg mx-auto max-w-6xl my-12" style={{width:'1024px',height:'1024px'}}>
+            <section id="skills" className="bg-gray-900 px-6  rounded-xl shadow-lg mx-auto max-w-6xl my-12" style={{ width: '1024px', height: '524px', overflowY: 'auto' }}>
+                <h3 className="anotation-view-text-2xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Skills</h3>
                 <div className="max-w-5xl mx-auto text-center">
-                    <h3 className="anotation-view-text-2xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Skills</h3>
+
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
 
 
