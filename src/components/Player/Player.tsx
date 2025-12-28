@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
 import { RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
 import { Html, useKeyboardControls } from '@react-three/drei'
@@ -133,6 +133,8 @@ const Player = () => {
   const handleMovement = (direction, active) => {
     movement.current[direction] = active;
   }
+
+
 
   return (
     <>

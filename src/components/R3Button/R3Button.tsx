@@ -12,7 +12,7 @@ const FONT_URL = "font/helvetik.json";
 // Download a JSON font (like 'helvetiker_regular.typeface.json')
 // and place it in your 'public' folder or similar.
 
-function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
+function R3Button({ position, isStreetLight = false, streatlight = "#ffdaab", boxFactor = 6, color = '#007bff', hoverColor = '#00ff00', text, textSize = 0.5, onClick }: any) {
   const [hitSound] = useState(() => new Audio('./mp3/click.wav'))
   const meshRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
@@ -86,7 +86,7 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
           isStreetLight && (
             <RigidBody type="fixed" colliders="cuboid">
               <group position-y={0} position-x={1} position-z={-1.5} scale={2} rotation={[0, -Math.PI / 2, 0]}>
-                <StreetLight />
+                <StreetLight streatlight={streatlight} />
               </group>
             </RigidBody>
           )

@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Grid, OrbitControls, Stats } from '@react-three/drei';
 import './Home.css';
 import Experience from '../Experience';
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Physics } from '@react-three/rapier'
 import SceneEnvironment from '../components/SceneEnvirnoment/SceneEnvirnoment';
 import StatusBar from '../components/StatusBar/StatusBar';
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
           <Physics debug={false}>
             <Experience />
           </Physics>
-          <Stats />
+          {/* <Stats /> */}
 
           {/* <Grid sectionSize={3}
             sectionColor={'purple'}

@@ -7,28 +7,31 @@ import Village from "../components/Village/Village";
 import Boundries from "../components/Boundries/Boundries";
 import R3FPortfolio from "../components/3dPortfolio/Index";
 import NavigationPath from "../components/NavigationPath/NavigationPath";
+import ResourceLoaderInfo from "../components/ResourceLoaderInfo/ResourceLoaderInfo";
+import { createPortal } from "react-dom";
+import { Html } from "@react-three/drei";
 
 
 
 const Experience = () => {
 
   return <>
-    {/* <WorkingDesk /> */}
-
+    <Html>
+      {
+        createPortal(<ResourceLoaderInfo />, document.body)
+      }
+    </Html>
     <Suspense fallback={null}>
-      <Garden />
-    </Suspense>
-    <Suspense fallback={null}>
-      <Player />
-    </Suspense>
-    <Suspense fallback={null}>
+      <Ground />
       <Village />
+      <Garden />
+      <BilBoard />
+      <NavigationPath />
+      <Boundries />
+      <Player />
+      <R3FPortfolio />
     </Suspense>
-    <BilBoard />
-    <Ground />
-    <NavigationPath />
-    <R3FPortfolio />
-    <Boundries />
+
 
   </>;
 };

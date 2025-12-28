@@ -34,7 +34,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 
 import './app.css'
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { KeyboardControls, KeyboardControlsEntry } from '@react-three/drei';
 setupIonicReact();
 export enum Controls {
@@ -59,7 +59,9 @@ const App: React.FC = () => {
         <IonRouterOutlet>
           <Route exact path="/home">
             <KeyboardControls map={map}>
+
               <Home />
+
             </KeyboardControls>
           </Route>
           <Route exact path="/">
