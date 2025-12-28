@@ -4,7 +4,7 @@ import PortfolioLayout from './PortfolioLayout'
 const About = () => {
     return (
         <PortfolioLayout>
-            <section id="about" className=" flex flex-col md:flex-row items-center gap-12 bg-gray-950 rounded-xl my-12 shadow-lg" style={{width:'1024px',height:'1024px'}}>
+            <section id="about" className="py-20 flex flex-col md:flex-row items-center gap-12 bg-gray-950 rounded-xl shadow-lg" style={{ width: '1024px', height: '524px', overflowY: 'auto' }}>
                 <div className="md:w-1/3 flex-shrink-0">
                     <img
                         src="/image/shanu.png"
@@ -21,8 +21,7 @@ const About = () => {
                         <strong className="font-semibold text-blue-400">Data Visualization Engineer</strong> with 4+ years of hands-on experience.
                         I specialize in building modern, scalable, and high-performance web applications using cutting-edge
                         technologies like <span className="font-medium">React</span>, <span className="font-medium">Angular</span>, and <span className="font-medium">D3.js</span>.
-                        My focus is on crafting intuitive user interfaces and extracting meaningful insights from complex data.
-                        I live by the principle: <em className="text-orange-400">"Karm karo, phal ki chinta mat kro"</em> (Do your duty, without concern for the results).
+
                     </p>
                 </div>
             </section>

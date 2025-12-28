@@ -4,7 +4,7 @@ import PortfolioLayout from './PortfolioLayout'
 const Contact = () => {
     return (
         <PortfolioLayout>
-            <section id="contact" className="px-6 py-16 md:py-24 max-w-6xl mx-auto rounded-xl my-12 text-center" style={{width:'1024px',height:'1024px'}}>
+            <section id="contact" className="px-6 py-16 md:py-24 max-w-6xl mx-auto rounded-xl my-12 text-center" style={{ width: '1024px', height: '524px', overflowY: 'auto' }}>
                 <h3 className="anotation-view-text-2xl font-bold mb-10 text-gray-100 border-b-2 border-blue-500 pb-2 inline-block">Get In Touch</h3>
                 <p className="anotation-view-text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                     Have a project in mind or just want to chat? Feel free to reach out to me through any of the channels below. I'm always open to new opportunities and collaborations!

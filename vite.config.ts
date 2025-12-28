@@ -12,6 +12,10 @@ export default defineConfig({
     tailwindcss(),
     legacy()
   ],
+   server: {
+    host: true,      // 👈 exposes IP automatically
+    port: 5173
+  },
   test: {
     globals: true,
     environment: 'jsdom',
