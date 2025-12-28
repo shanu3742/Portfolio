@@ -1,5 +1,5 @@
 import * as THREE from "three"
-export const Arrow = ({ scale = 1, color = '#FFD700', rotation = [-Math.PI, 0, 0], position = [0, 1, 0], props }) => {
+export const Arrow = ({ scale = 1, color = '#FFD700', rotation = [-Math.PI, 0, 0], position = [0, 1, 0], props }: any) => {
     const shape = new THREE.Shape()
 
     shape.moveTo(70, 20)

@@ -8,8 +8,9 @@ import ExperiencePieChart from "../../dataviz/Pie/Pie"
 import { useCallback, useState } from "react"
 import SideBarLayout from "../layout"
 
+
 const R3FExperience = () => {
-    const { activeSection, setActiveSection } = useR3FPortfolio()
+    const { activeSection, setActiveSection } = useR3FPortfolio() as any
 
 
     const portalRoot = document.getElementById("portfolio-view")
@@ -43,7 +44,7 @@ const R3FExperience = () => {
 
 
 
-const ExperienceContent = ({ setActiveSection }) => {
+const ExperienceContent = ({ setActiveSection }: any) => {
     const data = [
         {
             label: "Aarth",
@@ -182,7 +183,7 @@ const ExperienceContent = ({ setActiveSection }) => {
         }
     ];
     const [selectedExperience, setSelectedExperience] = useState(data[1].details[0]);
-    const onArcClick = useCallback((data) => {
+    const onArcClick = useCallback((data: any) => {
         setSelectedExperience(data.details[0]);
     }, []);
     return <SideBarLayout header="Experience" setActiveSection={setActiveSection}>
@@ -197,23 +198,23 @@ const ExperienceContent = ({ setActiveSection }) => {
                     })
                 }
             </div>
-            <ExperiencePieChart data={data} color={data.map(exp => exp.color)} width={200} height={200} onClick={onArcClick} selectedExperience={selectedExperience} />
+            <ExperiencePieChart data={data} color={data.map(exp => exp.color)} width={200} height={200} onClick={onArcClick} selectedExperience={selectedExperience as any} />
         </section>
         <section>
-            <ExperienceDetailsPanel data={selectedExperience} />
+            <ExperienceDetailsPanel data={selectedExperience as any} />
         </section>
     </SideBarLayout >
 
 }
 
 
-export const SectionTitle = ({ title, className = '' }) => (
+export const SectionTitle = ({ title, className = '' }: any) => (
     <h2 className={`text-xl font-bold text-teal-400 mb-4 border-b-2 border-teal-600/50 pb-2 ${className}`}>
         {title}
     </h2>
 );
 
-const Chip = ({ text }) => (
+const Chip = ({ text }: any) => (
     <span className="px-3 py-1 text-xs font-semibold bg-gray-700/50 text-teal-300 rounded-full border border-teal-700/50 hover:bg-teal-900/40 transition duration-200">
         {text}
     </span>
@@ -221,7 +222,7 @@ const Chip = ({ text }) => (
 
 // --- Main Panel Component ---
 
-const ExperienceDetailsPanel: React.FC = ({ data }) => {
+const ExperienceDetailsPanel = ({ data }: any) => {
     return (
         // Outer Container: Semi-transparent, fixed width, modern look
         <div className="w-[295px] bg-black/80 backdrop-blur-md p-4 text-gray-100 h-full overflow-y-auto shadow-2xl border-l-4 border-teal-600/30">
@@ -240,7 +241,7 @@ const ExperienceDetailsPanel: React.FC = ({ data }) => {
             <section className="mb-10">
                 <SectionTitle title="Technology Stack" />
                 <div className="flex flex-wrap gap-2">
-                    {data.techStack.map((tech) => (
+                    {data.techStack.map((tech: any) => (
                         <Chip key={tech} text={tech} />
                     ))}
                 </div>
@@ -250,7 +251,7 @@ const ExperienceDetailsPanel: React.FC = ({ data }) => {
             <section className="mb-10 p-5 bg-teal-900/20 rounded-xl border border-teal-700/50">
                 <SectionTitle title="Key Achievements" className="text-teal-200 border-teal-500/80" />
                 <div className="space-y-4">
-                    {data.majorContributions.map((contribution, index) => (
+                    {data.majorContributions.map((contribution: any, index: any) => (
                         <div key={index} className="pl-4 border-l-4 border-teal-400">
                             <h3 className="text-base font-semibold text-white mb-1">
                                 {contribution.title}
@@ -267,7 +268,7 @@ const ExperienceDetailsPanel: React.FC = ({ data }) => {
             <section className="mb-10">
                 <SectionTitle title="Core Responsibilities" />
                 <ul className="space-y-3">
-                    {data.responsibilities.map((responsibility, index) => (
+                    {data.responsibilities.map((responsibility: any, index: any) => (
                         <li key={index} className="flex items-start text-gray-300 text-sm">
                             <svg className="w-4 h-4 text-teal-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
@@ -282,7 +283,7 @@ const ExperienceDetailsPanel: React.FC = ({ data }) => {
             <section className="mb-4">
                 <SectionTitle title="Tangible Impact" />
                 <ul className="space-y-3 list-disc list-inside text-sm text-gray-300">
-                    {data.impact.map((item, index) => (
+                    {data.impact.map((item: any, index: any) => (
                         <li key={index} className="pl-2">
                             <span className="text-white font-medium">{item.split(' ')[0]}</span> {item.substring(item.indexOf(' ') + 1)}
                         </li>

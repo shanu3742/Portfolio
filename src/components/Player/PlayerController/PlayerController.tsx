@@ -8,25 +8,25 @@ import {
 import './playerController.css'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 
-const Controller = forwardRef((props, ref) => {
+const Controller = forwardRef((props: any, ref) => {
   const forwardbtnRef = useRef(null)
   const backwardbtnRef = useRef(null)
   const leftbtnRef = useRef(null)
   const rightbtnRef = useRef(null)
 
-  const activate = (ref) => {
+  const activate = (ref: any) => {
     if (!ref.current) return
     ref.current.classList.remove('btn')
     ref.current.classList.add('btn-active')
   }
 
-  const deactivate = (ref) => {
+  const deactivate = (ref: any) => {
     if (!ref.current) return
     ref.current.classList.remove('btn-active')
     ref.current.classList.add('btn')
   }
 
-  const handleAction = (direction, active) => {
+  const handleAction = (direction: any, active: any) => {
     props.onMove(direction, active)
   }
 

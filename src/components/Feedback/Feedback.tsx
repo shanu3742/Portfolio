@@ -4,12 +4,13 @@ import './feedback.css';
 
 function Feedback() {
     const [state, formAction, isPending] = useActionState(userFeedback, {
+        success: false,
         errors: {},
         enteredValues: {}
-    });
+    }) as any;
 
     // Common styling for inputs to keep code DRY
-    const inputStyles = (fieldName) => `
+    const inputStyles = (fieldName: any) => `
     w-full px-4 py-3 rounded-lg border bg-white/50 backdrop-blur-sm transition-all duration-200 outline-none text-gray-900 placeholder:text-gray-400
     ${state?.errors?.[fieldName]
             ? 'border-red-500 focus:ring-2 focus:ring-red-200'

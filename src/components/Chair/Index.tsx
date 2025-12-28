@@ -1,8 +1,8 @@
 
 import { useGLTF } from '@react-three/drei'
 
-export function Chair(props) {
-    const { nodes, materials } = useGLTF('/model/chair.glb')
+export function Chair(props: any) {
+    const { nodes, materials } = useGLTF('/model/chair.glb') as any
     return (
         <group {...props} dispose={null}>
             <group name="Root_Scene">

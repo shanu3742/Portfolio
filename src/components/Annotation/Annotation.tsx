@@ -1,6 +1,6 @@
 import { Html, } from '@react-three/drei'
 
-function Annotation({ children, distanceFactor, ...props }) {
+function Annotation({ children, distanceFactor, ...props }: any) {
 
     if (distanceFactor) {
         return <Html

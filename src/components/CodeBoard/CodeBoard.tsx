@@ -1,5 +1,5 @@
 import { Center, Html } from '@react-three/drei';
-import CodeViewer from '../CodeViewer/CodeViewer';
+
 
 
 const CodeBoard = () => {
@@ -20,7 +20,7 @@ const CodeBoard = () => {
                         distanceFactor={1.6}
                         position={[0, 0, 0]} // Slightly in front
                     >
-                        <CodeViewer />
+                        {/* <CodeViewer /> */}
                     </Html>
 
                     {/* Billboard behind HTML */}

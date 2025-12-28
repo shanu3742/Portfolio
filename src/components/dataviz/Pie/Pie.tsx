@@ -63,7 +63,7 @@ const ExperiencePieChart = ({
         () =>
             d3
                 .pie()
-                .value((d: d3.PieArcDatum<ExperienceDataItem>) => d.value)
+                .value((d: any) => d.value)
                 .sort(null),
         []
     );
@@ -80,7 +80,7 @@ const ExperiencePieChart = ({
 
     /* ---------- Computed arcs ---------- */
     const arcs = useMemo(
-        () => pieGenerator(data),
+        () => pieGenerator(data as any),
         [data, pieGenerator]
     );
 
@@ -95,15 +95,15 @@ const ExperiencePieChart = ({
     return (
         <svg width={width} height={height}>
             <g transform={`translate(${width / 2}, ${height / 2})`}>
-                {arcs.map((d: d3.PieArcDatum<ExperienceDataItem>) => {
+                {arcs.map((d: any) => {
                     const isSelected =
                         selectedExperience?.label === d.data.label;
 
                     return (
                         <path
                             key={d.data.label}
-                            d={arcGenerator(d)}
-                            fill={colorScale(d.data.label)}
+                            d={arcGenerator(d as any) as string}
+                            fill={colorScale(d.data.label) as any}
                             stroke={isSelected ? STROKE_COLOR : "none"}
                             strokeWidth={isSelected ? STROKE_WIDTH : 0}
                             onClick={() => handleSliceClick(d)}

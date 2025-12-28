@@ -6,12 +6,11 @@ Source: https://sketchfab.com/3d-models/indian-fort-be4432b8b18b451eb9081e959e34
 Title: INDIAN FORT
 */
 
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { RigidBody } from '@react-three/rapier'
 
-export function Temple(props) {
-  const { nodes, materials } = useGLTF('/model/temple/indian_fort.glb')
+
+export function Temple(props: any) {
+  const { nodes, materials } = useGLTF('/model/temple/indian_fort.glb') as any
   return (
 
     <group {...props} dispose={null}>

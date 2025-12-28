@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { AnimationNames, Man } from '../Man/Man'
-import { RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier'
+import { RapierRigidBody, RigidBody } from '@react-three/rapier'
 import { Html, useKeyboardControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -10,15 +10,14 @@ import Controller from './PlayerController/PlayerController'
 const SPEED = 6
 
 const Player = () => {
-  // 1. Get access to the Rapier world and instance
-  const { rapier, world } = useRapier()
 
-  const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
-  const movement = useRef({ forward: false, backward: false, leftward: false, rightward: false })
+
+  // const [hitSound] = useState(() => new Audio('./mp3/footstep.mp3'))
+  const movement = useRef<any>({ forward: false, backward: false, leftward: false, rightward: false })
   const [, getKeys] = useKeyboardControls()
   const body = useRef<RapierRigidBody | null>(null)
-  const manRef = useRef(null);
-  const controllerRef = useRef(null);
+  const manRef = useRef<any>(null);
+  const controllerRef = useRef<any>(null);
 
   const direction = new THREE.Vector3()
   const frontVector = new THREE.Vector3()
@@ -119,20 +118,21 @@ const Player = () => {
   })
 
   // Keep sound logic on collision for impact sounds
-  const playerHitGround = (event) => {
+  const playerHitGround = (event: any) => {
     if (event.other.rigidBodyObject?.name === 'ground') {
       // playSound()
     }
   }
 
-  const playSound = () => {
-    hitSound.currentTime = 0
-    hitSound.volume = Math.random()
-    hitSound.play()
-  }
-  const handleMovement = (direction, active) => {
+  // const playSound = () => {
+  //   hitSound.currentTime = 0
+  //   hitSound.volume = Math.random()
+  //   hitSound.play()
+  // }
+  const handleMovement = (direction: any, active: any) => {
     movement.current[direction] = active;
   }
+  const MAN_SCALE: any = 0.25;
 
   return (
     <>
@@ -147,7 +147,7 @@ const Player = () => {
         lockRotations
         onCollisionEnter={playerHitGround}
       >
-        <Man scale={0.25} ref={manRef} />
+        <Man scale={MAN_SCALE} ref={manRef} />
       </RigidBody>
       <Html>
         {createPortal(<Controller onMove={handleMovement} ref={controllerRef} />, document.body)}

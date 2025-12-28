@@ -7,14 +7,14 @@ import Skills from './Skills'
 import Experience from './Experience'
 import { createPortal } from 'react-dom'
 //  ['hero', 'about', 'contact', 'experience', 'project', 'skills'];
-const pageContext = createContext()
-const PageView = ({ pageName }) => {
+const pageContext = createContext(null)
+const PageView = ({ pageName }: any) => {
     const [pageNameState, setPageNameState] = React.useState(() => pageName);
     const pageContextValue = {
         pageName: pageNameState,
         setPageName: setPageNameState
     }
-    return <pageContext.Provider value={pageContextValue}>
+    return <pageContext.Provider value={pageContextValue as any} >
         <Page />
         {createPortal(
             <PageInterface />,
@@ -28,7 +28,7 @@ const PageView = ({ pageName }) => {
 export default PageView
 
 const Page = () => {
-    const { pageName } = usePageContext()
+    const { pageName } = usePageContext() as any
     if (pageName === 'about') {
         return <About />
     }
@@ -54,7 +54,7 @@ const Page = () => {
 
 
 export const PageInterface = () => {
-    const { pageName, setPageName } = usePageContext()
+    const { pageName, setPageName } = usePageContext() as any
 
     return (
         // The container is now semi-transparent with a subtle backdrop blur
@@ -72,7 +72,7 @@ export const PageInterface = () => {
 }
 
 // Helper component for cleaner button styling and logic
-const PageButton = ({ name, current, setPage, children }) => {
+const PageButton = ({ name, current, setPage, children }: any) => {
     // Determine the styles based on the active state
     const isActive = name === current;
 

@@ -31,7 +31,7 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
       textRef.current.geometry.computeBoundingBox();
 
       // Bounding box min and max positions on the X-axis
-      const box = textRef.current.geometry.boundingBox;
+      const box = textRef.current.geometry.boundingBox as any;
       // Calculate the total width of the text
       const textWidth = box.max.x - box.min.x;
       // The required offset to center the text is negative half its width
@@ -41,7 +41,7 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
   }, [text, textSize]); // Recalculate if text or size changes
 
   // Use useFrame to smoothly animate the button position when clicked
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (meshRef.current) {
       // Target Y position (pressedY if clicked, initialY otherwise)
       const targetY = clicked ? pressedY : initialY;
@@ -56,7 +56,7 @@ function R3Button({ position, isStreetLight = false, boxFactor = 6, color = '#00
   });
 
   // Handle click logic: press down, then immediately release after a short delay
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     e.stopPropagation();
     setClick(true);
 

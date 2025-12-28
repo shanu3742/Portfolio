@@ -1,8 +1,8 @@
-import * as THREE from "three"
-import { Center, Float, Text3D } from "@react-three/drei"
+
+import { Float, Text3D } from "@react-three/drei"
 import { Arrow } from "../Arrow/Arrow";
 const FONT_URL = "font/helvetik.json";
-function Arrow3D({ props }) {
+function Arrow3D() {
 
 
 

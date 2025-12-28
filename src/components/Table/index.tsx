@@ -2,7 +2,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Table() {
-  const { nodes, materials } = useGLTF("/model/table.glb");
+  const { nodes, materials } = useGLTF("/model/table.glb") as any;
   return (
     <group dispose={null}>
       <group scale={0.01}>

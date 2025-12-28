@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+
 import { useGLTF } from '@react-three/drei'
 import { RigidBody } from '@react-three/rapier'
 
-export function ClassicalHouse(props) {
-    const { nodes, materials } = useGLTF('/model/House/PoorHouse/Chalet.glb')
+export function ClassicalHouse(props: any) {
+    const { nodes, materials } = useGLTF('/model/House/PoorHouse/Chalet.glb') as any
     return (
 
         <group {...props} dispose={null}>

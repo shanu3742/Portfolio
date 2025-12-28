@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 const Boundries = () => {
     const [hitSound] = useState(() => new Audio('./mp3/wallcollision.mp3'))
-    let timerRef = useRef(null);
+    const timerRef = useRef<any>(null);
     const isAlertActive = useRef(false);
     const [presentAlert, dismissAlert] = useIonAlert();
     const playSound = () => {
@@ -12,7 +12,7 @@ const Boundries = () => {
         hitSound.volume = Math.random()
         hitSound.play()
     }
-    const onVirtualWallCollision = async (event) => {
+    const onVirtualWallCollision = async (event: any) => {
         if (event.other.rigidBodyObject?.name === 'man') {
 
             // 2. ONLY proceed if an alert isn't already showing

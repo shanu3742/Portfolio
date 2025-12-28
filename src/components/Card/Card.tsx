@@ -1,4 +1,4 @@
-export function Card({ children, className = "" }) {
+export function Card({ children, className = "" }: any) {
     return (
         <div
             className={`bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm ${className}`}
@@ -9,6 +9,6 @@ export function Card({ children, className = "" }) {
 }
 
 
-export function CardContent({ children, className = "" }) {
+export function CardContent({ children, className = "" }: any) {
     return <div className={`p-6 ${className}`}>{children}</div>;
 }

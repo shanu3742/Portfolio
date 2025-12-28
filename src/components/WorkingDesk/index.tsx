@@ -1,6 +1,6 @@
 import { Chair } from "../Chair/Index";
 import { CameraMover } from "../../animation/camera/DirectionCameraAnimation/DirectionCameraAnimation";
-import { Center, Html, useGLTF } from "@react-three/drei";
+import { Center, useGLTF } from "@react-three/drei";
 import { StreetLight } from "../StreetLight/StreetLight";
 import { RigidBody } from "@react-three/rapier";
 import Annotation from "../Annotation/Annotation";

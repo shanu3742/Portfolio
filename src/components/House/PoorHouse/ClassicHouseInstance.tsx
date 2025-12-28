@@ -6,9 +6,9 @@ import * as THREE from 'three' // Needed for Vector3 and potential Matrix4 usage
 
 import classicHouses from '../../../setting/classicHouse.json'
 
-const ClassicHouseInstance = ({ scaleIndex = 1 }) => {
+const ClassicHouseInstance = () => {
 
-    const { nodes, materials } = useGLTF('/model/House/PoorHouse/Chalet.glb');
+    const { nodes, materials } = useGLTF('/model/House/PoorHouse/Chalet.glb') as any;
 
 
     const zScale = d3.scaleLinear().domain([0, 1]).range([4, 15])
@@ -21,7 +21,7 @@ const ClassicHouseInstance = ({ scaleIndex = 1 }) => {
     const colliderScale = useMemo(() => new THREE.Vector3(instanceScale, instanceScale, instanceScale), [instanceScale]);
 
 
-    const houseListTransforms = useMemo(() => {
+    const houseListTransforms: any = useMemo(() => {
         return classicHouses.map((house) => {
             const x = xScale(house.x)
             const z = zScale(house.z)

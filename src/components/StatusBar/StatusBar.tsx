@@ -4,7 +4,7 @@ import APP_CONFIG from "../../app.config/config";
 const STATUS_API =
   `${APP_CONFIG.server_url}/portfolio/api/v1/status`;
 
-const STATUS_CONFIG = {
+const STATUS_CONFIG: any = {
   Active: {
     label: "Active",
     color: "bg-green-500",
@@ -54,7 +54,7 @@ export default function StatusBar() {
     );
   }
 
-  const config = STATUS_CONFIG[status] || STATUS_CONFIG["In-active"];
+  const config = STATUS_CONFIG[status as any] || STATUS_CONFIG["In-active"];
 
   return (
     <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-black/80 backdrop-blur-md shadow-lg border border-white/10">

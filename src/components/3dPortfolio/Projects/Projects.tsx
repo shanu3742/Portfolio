@@ -13,7 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { useState } from "react";
 const R3FProjects = () => {
-    const { activeSection, setActiveSection } = useR3FPortfolio()
+    const { activeSection, setActiveSection } = useR3FPortfolio() as any
     const portalRoot = document.getElementById("portfolio-view")
 
     return (
@@ -44,7 +44,7 @@ const R3FProjects = () => {
 
 
 
-const ProjectsContent = ({ setActiveSection }) => {
+const ProjectsContent = ({ setActiveSection }: any) => {
 
     return <SideBarLayout header="Projects" setActiveSection={setActiveSection}>
         <ProjectSection />
@@ -128,7 +128,7 @@ const ProjectSection = () => {
     const [selectedImage, setSelectedImage] = useState('');
     const [projectIndex, setProjectIndex] = useState(null);
 
-    const onImageviewOpen = (img, pIdx) => {
+    const onImageviewOpen = (img: any, pIdx: any) => {
         if (window.innerWidth < 768) return;
         setSelectedImage(img);
         setProjectIndex(pIdx);
@@ -139,7 +139,7 @@ const ProjectSection = () => {
         setProjectIndex(null);
     };
 
-    const slideUpdate = (swiper, cprojectIndex) => {
+    const slideUpdate = (swiper: any, cprojectIndex: any) => {
         // ONLY update the global preview if the project being swiped 
         // is the one currently being hovered by the user
         if (projectIndex === cprojectIndex) {
@@ -226,7 +226,7 @@ const ProjectSection = () => {
     );
 };
 
-const ImageModel = ({ image }) => {
+const ImageModel = ({ image }: any) => {
     return <div className="fixed inset-0 z-50 flex items-center justify-end 
                         bg-black/50 backdrop-blur-sm">
         <div className="w-3/4 h-3/4">

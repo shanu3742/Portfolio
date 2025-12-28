@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei'
 
-export function BillBoardSkeleton(props) {
-  const { nodes, materials } = useGLTF('/model/billboard/billboard.gltf')
+export function BillBoardSkeleton(props: any) {
+  const { nodes, materials } = useGLTF('/model/billboard/billboard.gltf') as any
   return (
     <group {...props} dispose={null}>
       <mesh

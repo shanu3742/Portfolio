@@ -1,10 +1,9 @@
 
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { PineTree } from '../PineTrees/PineTrees'
 
-export function PalmTree(props) {
-  const { nodes, materials } = useGLTF('/model/tree/PalmTree.gltf')
+export function PalmTree(props: any) {
+  const { nodes, materials } = useGLTF('/model/tree/PalmTree.gltf') as any
   return (
     <>
       <PineTree />

@@ -7,7 +7,7 @@ import { useR3FPortfolio } from "../R3Context"
 import SideBarLayout from "../layout"
 import Feedback from "../../Feedback/Feedback"
 const R3FContact = () => {
-    const { activeSection, setActiveSection } = useR3FPortfolio()
+    const { activeSection, setActiveSection } = useR3FPortfolio() as any
     const portalRoot = document.getElementById("portfolio-view")
 
     return (
@@ -38,7 +38,7 @@ const R3FContact = () => {
 
 
 
-const ContactContent = ({ setActiveSection }) => {
+const ContactContent = ({ setActiveSection }: any) => {
     return <SideBarLayout header="Contacts" setActiveSection={setActiveSection}>
         <Feedback />
     </SideBarLayout>

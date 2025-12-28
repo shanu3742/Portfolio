@@ -8,7 +8,7 @@ import SideBarLayout from "../layout"
 import useTypeWriter from "../../../hooks/useTypeWriter"
 import Highlighter from "react-highlight-words";
 const R3FIntro = () => {
-    const { activeSection, setActiveSection } = useR3FPortfolio()
+    const { activeSection, setActiveSection } = useR3FPortfolio() as any
     const portalRoot = document.getElementById("portfolio-view")
 
     return (
@@ -37,7 +37,7 @@ const R3FIntro = () => {
 
 
 
-const IntroContent = ({ setActiveSection }) => {
+const IntroContent = ({ setActiveSection }: any) => {
     const para1 = `I am a Software Engineer and data visualization specialist with over 4.5+ years of experience building high-performance, interactive financial applications. I specialize in D3.js–driven visualizations and have strong expertise in React, TypeScript, and Angular, with hands-on experience improving frontend performance and scalability.`;
 
     const para2 = `At StockEdge, I have built complex financial charts, upgraded large-scale Angular applications, and optimized legacy code to significantly reduce load times and improve user insights. I am currently expanding my skill set into Three.js and React Three Fiber to create immersive 3D data visualizations. I am passionate about transforming complex data into clear, intuitive, and visually engaging experiences.`;
