@@ -42,32 +42,32 @@ export enum Controls {
   backWard = 'backward',
   leftWard = 'leftward',
   rightWard = 'rightward',
-  jump = 'jump',
+  // jump = 'jump',
 }
 
 const App: React.FC = () => {
-  const map = useMemo<KeyboardControlsEntry<Controls>[]>(()=>[
-    { name: Controls.forWard, keys: ['ArrowUp', 'KeyW'] },
-    { name: Controls.backWard, keys: ['ArrowDown', 'KeyS'] },
-    { name: Controls.leftWard, keys: ['ArrowLeft', 'KeyA'] },
-    { name: Controls.rightWard, keys: ['ArrowRight', 'KeyD'] },
-    { name: Controls.jump, keys: ['Space'] },
+  const map = useMemo<KeyboardControlsEntry<Controls>[]>(() => [
+    { name: Controls.forWard, keys: ['ArrowUp'] },
+    { name: Controls.backWard, keys: ['ArrowDown'] },
+    { name: Controls.leftWard, keys: ['ArrowLeft'] },
+    { name: Controls.rightWard, keys: ['ArrowRight'] },
+    // { name: Controls.jump, keys: ['Space'] },
   ], [])
   return (
     <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-        <KeyboardControls map={map}>
-           <Home />
-        </KeyboardControls>
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <KeyboardControls map={map}>
+              <Home />
+            </KeyboardControls>
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
   )
 }
 

@@ -31,7 +31,6 @@ const WorkingDesk = () => {
                             intensity={10}
                             distance={0.8}
                             color="rgb(215, 205, 145)"
-                            castShadow
 
                         />
                     </group>
@@ -49,9 +48,10 @@ const WorkingDesk = () => {
                         </Annotation>
                         {/* <rectAreaLight width={2.5} height={1.65} intensity={65} color={'gray'} rotation={[-0.1, Math.PI, 0]} position={[0, 0.55, -1.15]} /> */}
                         <primitive object={scene} >
-                            <Html occlude transform wrapperClass="html-screen" distanceFactor={1.17} position={[0, 1.56, -1.4]} rotation-x={-0.256}>
+                            {/* <Html occlude transform wrapperClass="html-screen" distanceFactor={1.17} position={[0, 1.56, -1.4]} rotation-x={-0.256}>
                                 <iframe src="./portfolio/shanu.portfolio.html" />
-                            </Html>
+                            </Html> */}
+                            {/* how to render html */}
                         </primitive>
                     </group>
                     <group position-y={0.6} position-x={-0.9} position-z={0.35} >
