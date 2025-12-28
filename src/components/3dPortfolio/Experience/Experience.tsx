@@ -28,6 +28,7 @@ const R3FExperience = () => {
                 text="Experience"
                 color="#D4B24C"
                 isStreetLight={true}
+                streatlight={"red"}
                 hoverColor="#E6C86E"
                 boxFactor={9}
                 position={[25, 1, 0]}

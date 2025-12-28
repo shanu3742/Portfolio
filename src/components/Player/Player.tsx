@@ -134,6 +134,8 @@ const Player = () => {
   }
   const MAN_SCALE: any = 0.25;
 
+
+
   return (
     <>
       <RigidBody

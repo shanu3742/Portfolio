@@ -58,16 +58,30 @@ export const PageInterface = () => {
 
     return (
         // The container is now semi-transparent with a subtle backdrop blur
-        <div className='fixed top-4 right-4 z-50 flex flex-col p-2 rounded-lg space-y-1 backdrop-blur-sm bg-black/30'>
+        <>
+            <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-2">
+                {/* Label Section - Integrated into the top */}
+                <div className="pr-2 mb-1 text-right">
+                    <span className="block text-[10px] uppercase tracking-[0.2em] font-bold text-teal-400/80">
+                        Billboard
+                    </span>
+                    <span className="block text-[10px] uppercase tracking-[0.2em] font-medium text-white/40">
+                        Navigation
+                    </span>
+                </div>
 
-            <PageButton name="hero" current={pageName} setPage={setPageName}>Hero</PageButton>
-            <PageButton name="about" current={pageName} setPage={setPageName}>About</PageButton>
-            <PageButton name="skills" current={pageName} setPage={setPageName}>Skills</PageButton>
-            <PageButton name="projects" current={pageName} setPage={setPageName}>Projects</PageButton>
-            <PageButton name="experience" current={pageName} setPage={setPageName}>Experience</PageButton>
-            <PageButton name="contact" current={pageName} setPage={setPageName}>Contact</PageButton>
+                {/* Main Menu Box */}
+                <div className="billboard-navigation flex flex-col w-32 p-1.5 rounded-2xl border border-white/10 backdrop-blur-md bg-black/40 shadow-2xl">
+                    <PageButton name="hero" current={pageName} setPage={setPageName}>Hero</PageButton>
+                    <PageButton name="about" current={pageName} setPage={setPageName}>About</PageButton>
+                    <PageButton name="skills" current={pageName} setPage={setPageName}>Skills</PageButton>
+                    <PageButton name="projects" current={pageName} setPage={setPageName}>Projects</PageButton>
+                    <PageButton name="experience" current={pageName} setPage={setPageName}>Experience</PageButton>
+                    <PageButton name="contact" current={pageName} setPage={setPageName}>Contact</PageButton>
+                </div>
+            </div>
+        </>
 
-        </div>
     )
 }
 

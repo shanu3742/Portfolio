@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Ionic App</title>
+    <title>Shanu Portfolio</title>
+    <meta name="description" content="Frontend Developer & Data Viz Engineer Building intuitive UIs and data-driven apps with modern web technologies." />
     
     <base href="/" />
     
@@ -22,6 +23,58 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ionic App" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- icon -->
+     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<style>
+  .error-alert .alert-wrapper {
+  background: rgba(30, 0, 0, 0.75); /* semi-transparent dark red */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  box-shadow: 0 0 20px rgba(255, 60, 60, 0.35);
+}
+
+.error-alert .alert-title {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.error-alert .alert-message {
+  color: #ffdede;
+  font-size: 14px;
+}
+
+.error-alert .alert-button-group {
+  display: none; /* no buttons */
+}
+
+.error-alert .alert-wrapper {
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+</style>
   </head>
   <body>
     <div id="root"></div>
